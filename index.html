@@ -19,6 +19,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            padding: 18px;
             color: #2e2a26;
             line-height: 1.6;
         }
@@ -162,7 +163,7 @@
         /* Header */
         .header {
             max-width: 1200px;
-            margin: 40px auto 45px;
+            margin: 40px auto;
             padding: 32px 40px;
             display: grid;
             grid-template-columns: minmax(420px, 1fr) 440px;
@@ -174,12 +175,11 @@
             box-shadow: 0 24px 60px rgba(70, 54, 41, 0.16);
         }
 
-        .header-summary {
-            display: flex;
-            flex-direction: column;
+        .heroCopy {
+            max-width: 900px;
         }
 
-        .header-summary .greeting {
+        .heroCopy .greeting {
             font-size: 14px;
             color: #6d6057;
             font-weight: 600;
@@ -188,7 +188,7 @@
             margin-bottom: 2px;
         }
 
-        .header-summary h1 {
+        .heroCopy h1 {
             font-size: 36px;
             font-weight: 700;
             color: #c6621f;
@@ -196,34 +196,41 @@
             font-family: 'Playfair Display', serif;
         }
 
-        .header-portrait {
+        .profilePhoto {
             float: right;
-            width: 218px;
-            height: 218px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
+            margin: 0 0 16px 24px;
+            shape-outside: circle(50%);
+            -webkit-shape-outside: circle(50%);
             object-fit: cover;
-            object-position: center 30%;
+            object-position: center 65%;
             border: 3px solid rgba(198, 98, 31, 0.6);
             box-shadow: 0 12px 30px rgba(70, 54, 41, 0.22);
-            margin: -6px 0 12px 16px;
-            shape-outside: circle(50%);
         }
 
-        .header-summary .subtitle {
+        .heroCopy::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .heroCopy .subtitle {
             font-size: 17px;
             color: #5d5852;
             margin-bottom: 16px;
             font-weight: 400;
         }
 
-        .header-summary .tagline {
+        .heroCopy .tagline {
             font-size: 15px;
             color: #6d6057;
             line-height: 1.7;
             margin-bottom: 16px;
         }
 
-        .header-summary .summary-text {
+        .heroCopy .summary-text {
             color: #5d5852;
             line-height: 1.7;
         }
@@ -266,23 +273,24 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px 50px;
+            padding: 0;
         }
 
         section {
-            margin-bottom: 45px;
+            margin-bottom: 40px;
             scroll-margin-top: 100px;
-            background: rgba(255, 255, 255, 0.82);
+            background: rgba(253, 251, 248, 0.82);
             border: 1px solid #eadfd6;
             border-radius: 22px;
-            padding: 30px 32px;
+            padding: 32px 40px;
             box-shadow: 0 14px 30px rgba(70, 54, 41, 0.08);
         }
 
         .section-divider {
             height: 1px;
             background: linear-gradient(to right, rgba(231, 222, 212, 0) 0%, rgba(231, 222, 212, 1) 35%, rgba(231, 222, 212, 0) 100%);
-            margin: 40px 0;
+            margin: 40px auto;
+            max-width: 1200px;
         }
 
         h2 {
@@ -374,13 +382,13 @@
 
         /* Personal Section */
         .personal-section {
-            background: rgba(255, 255, 255, 0.82);
+            background: rgba(253, 251, 248, 0.82);
             border-top: 1px solid #eadfd6;
             border-bottom: 1px solid #eadfd6;
             border-left: none;
             border-right: none;
-            padding: 30px 32px;
-            margin: 0 0 45px 0;
+            padding: 32px 40px;
+            margin: 0 0 40px 0;
             box-shadow: 0 14px 30px rgba(70, 54, 41, 0.08);
         }
 
@@ -689,6 +697,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
             .nav-container {
                 padding: 0 30px;
                 flex-direction: column;
@@ -714,7 +726,7 @@
                 grid-template-columns: 1fr;
                 gap: 25px;
                 text-align: center;
-                margin: 30px auto 40px;
+                margin: 30px auto;
                 padding: 28px 26px;
             }
 
@@ -724,7 +736,7 @@
             }
 
             .container {
-                padding: 0 30px 60px;
+                padding: 0;
             }
 
             .personal-content {
@@ -751,15 +763,16 @@
                 gap: 4px;
             }
 
-            .header-summary .summary-text {
+            .heroCopy .summary-text {
                 text-align: left;
             }
 
-            .header-portrait {
+            .profilePhoto {
                 float: none;
-                width: 150px;
-                height: 150px;
-                margin: 18px auto 0;
+                display: block;
+                margin: 0 auto 16px auto;
+                shape-outside: none;
+                -webkit-shape-outside: none;
             }
         }
 
@@ -862,18 +875,20 @@
 
     <!-- Header -->
     <div class="header">
-        <div class="header-summary" id="summary">
-            <div class="greeting">Hi, I'm Brittany!</div>
-            <h1>Brittany Passavanti</h1>
-            <img src="assets/profile.jpg" alt="Brittany Passavanti" class="header-portrait" />
-            <div class="subtitle">Implementation Strategist</div>
-            <div class="tagline">
-                Looking for my next opportunity in Implementation or Customer Success — ideally at a mission-driven company where I can help clients navigate change, adopt new technology with confidence, and see real results. I'm at my best when I'm building relationships, simplifying complexity, and making sure the people doing the work feel supported every step of the way.
+        <section class="hero" id="summary">
+            <div class="heroCopy">
+                <img src="assets/profile.jpg" alt="Brittany Passavanti" class="profilePhoto" />
+                <div class="greeting">Hi, I'm Brittany!</div>
+                <h1>Brittany Passavanti</h1>
+                <div class="subtitle">Implementation Strategist</div>
+                <div class="tagline">
+                    Looking for my next opportunity in Implementation or Customer Success — ideally at a mission-driven company where I can help clients navigate change, adopt new technology with confidence, and see real results. I'm at my best when I'm building relationships, simplifying complexity, and making sure the people doing the work feel supported every step of the way.
+                </div>
+                <div class="summary-text">
+                    I've spent 6+ years helping organizations adopt new technology — not just configuring platforms, but actually sitting with the people who use them and making sure the transition makes their work easier, not harder. My background spans enterprise SaaS implementations, client success, and hands-on AI training, which means I understand both the technology and the human side of getting it right. I'm the person who builds trust with stakeholders, translates between technical teams and end users, and stays in the room until things are running smoothly. I care about the outcomes, but I care just as much about how people feel getting there.
+                </div>
             </div>
-            <div class="summary-text">
-                I've spent 6+ years helping organizations adopt new technology — not just configuring platforms, but actually sitting with the people who use them and making sure the transition makes their work easier, not harder. My background spans enterprise SaaS implementations, client success, and hands-on AI training, which means I understand both the technology and the human side of getting it right. I'm the person who builds trust with stakeholders, translates between technical teams and end users, and stays in the room until things are running smoothly. I care about the outcomes, but I care just as much about how people feel getting there.
-            </div>
-        </div>
+        </section>
         <div class="header-chat">
             <div class="chat-window" id="chatWindow">
                 <div class="chat-header">
@@ -916,6 +931,8 @@
             </div>
         </div>
     </div>
+
+    <div class="section-divider"></div>
 
     <!-- Main Content -->
     <div class="container">
