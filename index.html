@@ -205,7 +205,7 @@
             shape-outside: circle(50%);
             -webkit-shape-outside: circle(50%);
             object-fit: cover;
-            object-position: center 65%;
+            object-position: center 30%;
             border: 3px solid rgba(198, 98, 31, 0.6);
             box-shadow: 0 12px 30px rgba(70, 54, 41, 0.22);
         }
@@ -482,11 +482,14 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            min-height: 0;
+            overflow: hidden;
         }
 
         .chat-window {
             width: 100%;
             height: 100%;
+            max-height: 100%;
             background: #f7f2ea;
             background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)),
                               repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.036), rgba(0, 0, 0, 0.036) 1px, transparent 1px, transparent 7.2px),
@@ -856,19 +859,20 @@
     <!-- AI Meta Banner -->
     <div class="ai-meta-banner">
         <div class="container">
-            This resume was co-created with Claude AI as a demonstration of human-AI collaboration in professional contexts.
+            This resume was co-created with Claude and Codex AI as a demonstration of human-AI collaboration in professional contexts.
             <br><span class="expand-trigger" onclick="toggleExpand()">See how I built this →</span>
             <div class="expandable-content" id="expandableContent">
                 <h4>How This Resume Was Built:</h4>
+                <p>This resume was intentionally built as a demonstration of applied human-AI collaboration. I partnered with Claude and Codex to design, structure, and refine it — not as a gimmick, but as a working example of how I approach AI adoption: strategically, transparently, and with clear outcomes.</p>
                 <ol>
-                    <li><strong>Content Strategy:</strong> Started with my existing resume and reframed everything around the Qventus Implementation Success Partner role — less jargon, more "here's how I actually work with people"</li>
-                    <li><strong>AI Integration:</strong> Added my DataAnnotation AI Trainer role and positioned all experience around guiding clients through technology adoption and change</li>
-                    <li><strong>Language Optimization:</strong> Used Claude to rewrite bullet points to sound like a real person talking about real work — not a keyword-stuffed resume template</li>
-                    <li><strong>Design Iteration:</strong> Collaborated with Claude to create a clean, minimal design inspired by modern portfolio sites, removing generic "AI-generated" aesthetics</li>
-                    <li><strong>Interactive Features:</strong> Built AI chat assistant using Claude API to answer questions about my experience - demonstrating exactly the kind of AI implementation I'd do for clients</li>
-                    <li><strong>Testing & Refinement:</strong> Iterated on layout, typography, and content placement based on what felt authentic vs. templated</li>
+                    <li><strong>Strategic Reframing:</strong> I started with my existing resume and restructured it around AI implementation and client adoption work — shifting from task descriptions to impact, change management, and how I guide real people through new technology.</li>
+                    <li><strong>Multi-Model Collaboration:</strong> I used Claude for structured rewriting, tone refinement, and strategic positioning, and Codex to support technical logic and implementation decisions within the site. This mirrors how I approach AI deployments: selecting the right model for the right task.</li>
+                    <li><strong>AI as Amplifier, Not Replacement:</strong> Rather than generating content from scratch, I directed the models with specific prompts, iterated on outputs, and refined language to maintain authenticity. The goal wasn’t automation — it was acceleration with judgment.</li>
+                    <li><strong>Design & UX Iteration:</strong> Through collaborative iteration, I refined layout, hierarchy, and typography to remove templated aesthetics and create a clean, modern experience aligned with portfolio-style design.</li>
+                    <li><strong>Applied AI Implementation:</strong> I built an interactive AI assistant using the Claude API to answer questions about my background. This serves as a live demonstration of customer-facing AI enablement — exactly the type of implementation work I do with clients.</li>
+                    <li><strong>Testing & Optimization:</strong> I iterated on structure, tone, and usability, evaluating what felt credible versus generic. Every revision was guided by clarity, audience intent, and adoption principles.</li>
                 </ol>
-                <p style="margin-top: 15px; font-size: 13px; color: #888;">This process took about 1 hour and shows how AI can accelerate professional work while maintaining authenticity and strategic thinking.</p>
+                <p style="margin-top: 15px; font-size: 13px; color: #888;">The entire process took roughly one hour — illustrating how AI, when guided effectively, can compress timelines without sacrificing strategic thinking, clarity, or voice.</p>
             </div>
         </div>
     </div>
@@ -882,10 +886,11 @@
                 <h1>Brittany Passavanti</h1>
                 <div class="subtitle">Implementation Strategist</div>
                 <div class="tagline">
-                    Looking for my next opportunity in Implementation or Customer Success — ideally at a mission-driven company where I can help clients navigate change, adopt new technology with confidence, and see real results. I'm at my best when I'm building relationships, simplifying complexity, and making sure the people doing the work feel supported every step of the way.
+                    I’m looking for my next role in AI Implementation or Customer Success at a company building transformative technology. I do my best work helping organizations move from curiosity about AI to confident, measurable adoption — translating complex systems into practical workflows that teams actually use.
                 </div>
                 <div class="summary-text">
-                    I've spent 6+ years helping organizations adopt new technology — not just configuring platforms, but actually sitting with the people who use them and making sure the transition makes their work easier, not harder. My background spans enterprise SaaS implementations, client success, and hands-on AI training, which means I understand both the technology and the human side of getting it right. I'm the person who builds trust with stakeholders, translates between technical teams and end users, and stays in the room until things are running smoothly. I care about the outcomes, but I care just as much about how people feel getting there.
+                    <p>For the past 6+ years, I’ve led enterprise SaaS implementations and client success initiatives, partnering closely with stakeholders to drive real behavioral change, not just technical deployment. My background includes hands-on AI training and model evaluation work, giving me a grounded understanding of how intelligent systems function and where they succeed — or fail — in real environments. I operate at the intersection of product, technical teams, and end users, ensuring alignment, trust, and long-term adoption.</p>
+                    <p>I’m the person who stays through the messy middle of change — facilitating discovery sessions, guiding onboarding, simplifying configuration decisions, and measuring impact post-launch. I care about results, but I care just as much about empowering teams to feel capable and confident using AI tools in their daily work.</p>
                 </div>
             </div>
         </section>
@@ -15458,6 +15463,28 @@ cY7EYrJ43DHWmMf/2Q==" alt="Brittany in Scotland" class="personal-photo" />
                 }
             });
         });
+
+        function syncChatHeight() {
+            const hero = document.querySelector('.hero');
+            const chat = document.getElementById('chatWindow');
+            if (!hero || !chat) return;
+
+            if (window.innerWidth <= 768) {
+                chat.style.height = 'auto';
+                chat.style.maxHeight = 'none';
+                return;
+            }
+
+            const heroHeight = Math.ceil(hero.getBoundingClientRect().height);
+            chat.style.height = `${heroHeight}px`;
+            chat.style.maxHeight = `${heroHeight}px`;
+        }
+
+        window.addEventListener('load', () => {
+            syncChatHeight();
+            setTimeout(syncChatHeight, 250);
+        });
+        window.addEventListener('resize', syncChatHeight);
 
     </script>
 </body>
