@@ -22794,9 +22794,11 @@ cY7EYrJ43DHWmMf/2Q==" alt="Brittany in Scotland" class="personal-photo" />
 
                 const data = await response.json();
                 removeTyping(typingDiv);
-                
-                if (data.reply) {
+
+                if (response.ok && data.reply) {
                     addMessage(data.reply, 'assistant');
+                } else if (data.error) {
+                    addMessage(`Chat error: ${data.error}`, 'assistant');
                 } else {
                     addMessage("Sorry, I couldn't process that question. Try asking about Brittany's experience or skills!", 'assistant');
                 }

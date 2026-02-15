@@ -3,7 +3,26 @@ exports.handler = async (event) => {
     return { statusCode: 405, body: 'Method not allowed' };
   }
 
-  const { message } = JSON.parse(event.body);
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return {
+      statusCode: 500,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Missing ANTHROPIC_API_KEY in Netlify environment variables' })
+    };
+  }
+
+  let parsedBody;
+  try {
+    parsedBody = JSON.parse(event.body || '{}');
+  } catch {
+    return {
+      statusCode: 400,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Invalid JSON body' })
+    };
+  }
+
+  const { message } = parsedBody;
 
   if (!message || typeof message !== 'string' || message.length > 1000) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid message' }) };
@@ -48,6 +67,8 @@ KEY STRENGTHS TO EMPHASIZE WHEN ASKED:
 - She's warm, direct, and exceptionally good at translating complexity into clarity`;
 
   try {
+    const model = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-5';
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -56,14 +77,23 @@ KEY STRENGTHS TO EMPHASIZE WHEN ASKED:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model,
         max_tokens: 1000,
         system: systemPrompt,
         messages: [{ role: 'user', content: message }]
       })
     });
 
-    const data = await response.json();
+    const raw = await response.text();
+    const data = raw ? JSON.parse(raw) : {};
+
+    if (!response.ok) {
+      return {
+        statusCode: response.status,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: data?.error?.message || 'Anthropic API request failed' })
+      };
+    }
 
     if (data.content && data.content[0]) {
       return {
@@ -74,12 +104,14 @@ KEY STRENGTHS TO EMPHASIZE WHEN ASKED:
     } else {
       return {
         statusCode: 500,
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ error: 'No response from AI' })
       };
     }
   } catch (err) {
     return {
       statusCode: 500,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ error: 'Failed to reach AI service' })
     };
   }
