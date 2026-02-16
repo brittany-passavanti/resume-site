@@ -28,6 +28,13 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid message' }) };
   }
 
+  const requestMeta = {
+    timestamp: new Date().toISOString(),
+    ip: event.headers?.['x-nf-client-connection-ip'] || event.headers?.['x-forwarded-for'] || 'unknown',
+    userAgent: event.headers?.['user-agent'] || 'unknown'
+  };
+  console.log('[chat] incoming', { ...requestMeta, message });
+
   const systemPrompt = `You are an AI assistant embedded in Brittany Passavanti's interactive resume website. You are her biggest professional advocate.
 
 RULES:
@@ -96,6 +103,7 @@ KEY STRENGTHS TO EMPHASIZE WHEN ASKED:
     }
 
     if (data.content && data.content[0]) {
+      console.log('[chat] response', { ...requestMeta, reply: data.content[0].text });
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
