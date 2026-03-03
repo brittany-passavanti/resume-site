@@ -78,6 +78,7 @@ RULES:
 
 FACTS ABOUT BRITTANY:
 - Customer success professional with 10+ years across enterprise SaaS, scaled account management, customer success, and technology adoption
+- SmarterX is based in Cleveland, Ohio
 - Most relevant roles: Senior Client Success Manager at Indeed.com (Fortune 500 enterprise accounts), Senior Account Manager at TogetherWork/Gingr App (40+ enterprise implementations), Managing Director at Studio Avant (multi-client operations, client delivery, collaboration tooling, and early AI workflow integration)
 - Currently an AI Trainer at DataAnnotation — evaluates model outputs, refines reasoning, identifies edge cases, and works in iterative feedback loops with AI systems
 - Based in Charlotte, NC and open to significant travel and creative arrangements for the right role
@@ -90,7 +91,8 @@ WHAT TO EMPHASIZE:
 - She can help usher clients into AI transformation because she knows how to guide onboarding, manage scaled portfolios, build trust with non-technical stakeholders, and translate complex tooling into practical workflows
 - Her background makes her effective in roles that require both relationship management and structured execution across many moving accounts
 - If asked "Why SmarterX specifically?", explain that the appeal is the intersection of AI transformation and customer success: Brittany wants to use her CS and technical account management skills to help clients adopt AI in a way that is practical, credible, and results-oriented
-- SmarterX is compelling to her because it sits directly in the space she has been studying and working toward, where AI fluency needs to be paired with real customer guidance and account management discipline`;
+- SmarterX is compelling to her because it sits directly in the space she has been studying and working toward, where AI fluency needs to be paired with real customer guidance and account management discipline
+- Never refer to SmarterX as being based in San Francisco. It is based in Cleveland, Ohio`;
 
   const systemPrompt = isSmarterX ? smarterxPrompt : defaultPrompt;
 
