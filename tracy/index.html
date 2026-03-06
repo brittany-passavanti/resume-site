@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First 90 Days — Brittany Passavanti</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white:   #ffffff;
+    --off:     #f7f9fb;
+    --border:  #e4e8ed;
+    --border2: #cdd3da;
+    --muted:   #6b7280;
+    --text:    #111827;
+    --light:   #f0f4f8;
+
+    /* SmarterX brand */
+    --blue:    #0e8fc7;
+    --blue-d:  #0a6fa0;
+    --blue-l:  #e8f4fb;
+    --black:   #111827;
+
+    /* status */
+    --green:   #166534;
+    --green-l: #dcfce7;
+    --amber:   #92400e;
+    --amber-l: #fef3c7;
+    --red:     #991b1b;
+    --red-l:   #fee2e2;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .page { display: none; flex-direction: column; flex: 1; overflow-y: auto; }
+  .page.active { display: flex; }
+
+  /* ─── GLOBAL NAV ─── */
+  .global-nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 52px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  /* Logo */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 0;
+    margin-right: 44px;
+    flex-shrink: 0;
+  }
+
+  /* "AI" bold blue block */
+  .logo-ai {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--blue);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .logo-academy {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .logo-byline {
+    font-size: 8.5px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+    margin-left: 2px;
+  }
+
+  .logo-text-wrap { display: flex; flex-direction: column; }
+
+  .nav-tabs { display: flex; gap: 0; }
+
+  .nav-tab {
+    padding: 18px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+  .nav-right {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ══════════════════
+     PAGE 1 — KANBAN
+  ══════════════════ */
+
+  .kanban-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 52px 24px;
+    flex-shrink: 0;
+    overflow: hidden;
+    max-height: 160px;
+    transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.25s ease;
+    opacity: 1;
+  }
+
+  .kanban-header.compact {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    border-bottom-color: transparent;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .header-title {
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+
+  .header-title span { color: var(--blue); }
+
+  .header-meta {
+    display: flex;
+    gap: 40px;
+    flex-shrink: 0;
+    padding-bottom: 2px;
+  }
+
+  .meta-item { text-align: right; }
+
+  .meta-num {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .meta-num span { color: var(--blue); }
+
+  .meta-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  /* Toolbar */
+  .toolbar {
+    background: var(--off);
+    border-bottom: 1px solid var(--border);
+    padding: 9px 52px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .toolbar-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .filter-btns { display: flex; gap: 5px; }
+
+  .filter-btn {
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border2);
+    background: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+
+  .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .filter-btn.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+
+  .toolbar-hint {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  /* Board */
+  .board {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 22px 52px 44px;
+    overflow-x: auto;
+    align-items: start;
+    background: var(--off);
+  }
+
+  .col { display: flex; flex-direction: column; min-width: 230px; }
+
+  .col-head {
+    padding: 14px 16px 12px;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .c1 .col-head { background: var(--blue); }
+  .c2 .col-head { background: #0a6fa0; }
+  .c3 .col-head { background: var(--black); }
+
+  .col-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .col-title-wrap { flex: 1; }
+
+  .col-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.01em;
+  }
+
+  .col-dates {
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+  }
+
+  .col-count {
+    background: rgba(255,255,255,0.18);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .col-body {
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 340px;
+    background: var(--white);
+    transition: background 0.12s;
+  }
+
+  .col-body.drag-over { background: var(--blue-l); border-color: var(--blue); }
+
+  /* Cards */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 14px 14px 12px;
+    cursor: grab;
+    transition: box-shadow 0.12s, transform 0.12s, opacity 0.12s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    user-select: none;
+    animation: cardIn 0.22s ease both;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(3px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:hover { box-shadow: 0 3px 10px rgba(14,143,199,0.12); transform: translateY(-1px); border-color: var(--blue); }
+  .card:active { cursor: grabbing; }
+  .card.dragging { opacity: 0.25; transform: scale(0.98); }
+  .card.hidden { display: none; }
+  .card.featured { border-left: 3px solid var(--blue); padding-left: 11px; }
+
+  .card-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .card-body {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+
+  .card-foot { display: flex; align-items: center; justify-content: space-between; }
+
+  .tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+
+  .tag-1 { background: var(--blue-l); color: var(--blue-d); }
+  .tag-2 { background: #dbeafe; color: #1d4ed8; }
+  .tag-3 { background: var(--light); color: #374151; }
+
+  .priority {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pdot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .card-ghost {
+    border: 1px dashed var(--blue);
+    border-radius: 5px;
+    height: 48px;
+    pointer-events: none;
+    background: var(--blue-l);
+  }
+
+  .milestone {
+    margin-top: 9px;
+    padding: 11px 14px;
+    background: var(--blue-l);
+    border: 1px solid #c0dff0;
+    border-radius: 5px;
+  }
+
+  .milestone-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue-d);
+    margin-bottom: 4px;
+  }
+
+  .milestone-text {
+    font-size: 11.5px;
+    color: var(--text);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* ══════════════════════════
+     PAGE 2 — HEALTH SCORE
+  ══════════════════════════ */
+
+  .hs-page {
+    flex: 1;
+    padding: 32px 52px 56px;
+    background: var(--off);
+  }
+
+  .hs-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .hs-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+
+  .hs-title span { color: var(--blue); }
+
+  .hs-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .hs-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .summary-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+
+  .summary-card.s-alert { border-top: 3px solid #dc2626; }
+  .summary-card.s-warn  { border-top: 3px solid #d97706; }
+  .summary-card.s-good  { border-top: 3px solid #16a34a; }
+  .summary-card.s-blue  { border-top: 3px solid var(--blue); }
+
+  .summary-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .summary-num {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .summary-card.s-alert .summary-num { color: #dc2626; }
+  .summary-card.s-warn  .summary-num { color: #d97706; }
+  .summary-card.s-good  .summary-num { color: #16a34a; }
+  .summary-card.s-blue  .summary-num { color: var(--blue); }
+
+  .summary-sub { font-size: 11px; color: var(--muted); }
+
+  /* Attention banner */
+  .attention-section {
+    background: #fff5f5;
+    border: 1px solid #fca5a5;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+  }
+
+  .attention-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #dc2626;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .attention-dot { width: 7px; height: 7px; border-radius: 50%; background: #dc2626; flex-shrink: 0; }
+
+  .attention-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .attention-item {
+    background: var(--white);
+    border: 1px solid #fca5a5;
+    border-radius: 5px;
+    padding: 13px 15px;
+  }
+
+  .attention-account { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .attention-rep { font-size: 11px; color: var(--muted); margin-bottom: 7px; }
+  .attention-reason { font-size: 11px; color: #dc2626; font-weight: 500; line-height: 1.5; }
+
+  /* Rep section */
+  .rep-section { margin-bottom: 32px; }
+
+  .rep-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .rep-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* Table */
+  .account-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+  }
+
+  .account-table thead tr th {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0 14px 6px;
+  }
+
+  .account-row {
+    background: var(--white);
+    transition: box-shadow 0.12s;
+  }
+
+  .account-row:hover { box-shadow: 0 2px 8px rgba(14,143,199,0.1); }
+
+  .account-row td {
+    padding: 13px 14px;
+    font-size: 13px;
+    vertical-align: middle;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .account-row td:first-child {
+    font-weight: 700;
+    border-left: 1px solid var(--border);
+    border-radius: 5px 0 0 5px;
+  }
+
+  .account-row td:last-child {
+    border-right: 1px solid var(--border);
+    border-radius: 0 5px 5px 0;
+  }
+
+  /* Score */
+  .score-wrap { display: flex; align-items: center; gap: 10px; }
+
+  .score-bar-track {
+    flex: 1;
+    height: 5px;
+    background: var(--border);
+    border-radius: 100px;
+    overflow: hidden;
+    max-width: 100px;
+  }
+
+  .score-bar-fill { height: 100%; border-radius: 100px; }
+
+  .score-num { font-size: 13px; font-weight: 700; min-width: 26px; }
+
+  .tier-healthy .score-bar-fill { background: #16a34a; }
+  .tier-healthy .score-num      { color: #16a34a; }
+  .tier-watch   .score-bar-fill { background: #d97706; }
+  .tier-watch   .score-num      { color: #d97706; }
+  .tier-risk    .score-bar-fill { background: #dc2626; }
+  .tier-risk    .score-num      { color: #dc2626; }
+
+  /* Status badge */
+  .status-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .status-healthy { background: var(--green-l); color: var(--green); }
+  .status-watch   { background: var(--amber-l); color: var(--amber); }
+  .status-risk    { background: var(--red-l);   color: var(--red); }
+
+  /* Explore link */
+  .explore-link {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.12s;
+  }
+
+  .explore-link:hover { gap: 7px; }
+  .explore-link::after { content: '→'; font-size: 12px; }
+
+  /* Adoption bars */
+  .adopt-wrap { display: flex; gap: 2px; }
+
+  .adopt-seg {
+    height: 12px;
+    border-radius: 2px;
+    font-size: 0;
+  }
+
+  @media (max-width: 900px) {
+    .global-nav, .kanban-header, .toolbar { padding-left: 20px; padding-right: 20px; }
+    .board, .hs-page { padding-left: 20px; padding-right: 20px; }
+    .board { grid-template-columns: repeat(3, minmax(210px, 1fr)); }
+    .hs-summary { grid-template-columns: repeat(2, 1fr); }
+    .attention-items { grid-template-columns: 1fr; }
+    .header-meta, .toolbar-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GLOBAL NAV -->
+<nav class="global-nav">
+  <div class="nav-logo">
+    <div class="logo-text-wrap">
+      <div style="display:flex;align-items:baseline;gap:0">
+        <span class="logo-ai">AI</span><span class="logo-academy">Academy</span>
+      </div>
+      <span class="logo-byline">by SmarterX</span>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <div class="nav-tab active" data-page="kanban">90-Day Plan</div>
+    <div class="nav-tab" data-page="health">Account Health</div>
+  </div>
+
+  <div class="nav-right">Brittany Passavanti &nbsp;·&nbsp; Customer Success Manager</div>
+</nav>
+
+<!-- ════════════════
+     PAGE 1 — KANBAN
+════════════════ -->
+<div class="page active" id="page-kanban">
+
+  <div class="kanban-header" id="kanban-header">
+    <div class="header-inner">
+      <div>
+        <div class="header-title">First 90 Days<br><span>Brittany Passavanti</span></div>
+      </div>
+      <div class="header-meta">
+        <div class="meta-item"><div class="meta-num"><span>3</span></div><div class="meta-label">Phases</div></div>
+        <div class="meta-item"><div class="meta-num"><span>12</span></div><div class="meta-label">Initiatives</div></div>
+        <div class="meta-item"><div class="meta-num"><span>90</span></div><div class="meta-label">Days</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <span class="toolbar-label">Filter</span>
+    <div class="filter-btns">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Process">Process</button>
+      <button class="filter-btn" data-filter="Health Score">Health Score</button>
+      <button class="filter-btn" data-filter="Customer">Customer</button>
+      <button class="filter-btn" data-filter="Internal">Internal</button>
+    </div>
+    <div class="toolbar-hint">Cards are draggable between phases</div>
+  </div>
+
+  <div class="board">
+
+    <!-- COL 1 -->
+    <div class="col c1">
+      <div class="col-head">
+        <div class="col-num">1</div>
+        <div class="col-title-wrap">
+          <div class="col-title">Listen &amp; Map</div>
+          <div class="col-dates">Days 1 – 30</div>
+        </div>
+        <div class="col-count" id="count-1">4</div>
+      </div>
+      <div class="col-body" id="body-1" data-col="1">
+
+        <div class="card" draggable="true" data-tag="Process">
+          <div class="card-title">Audit existing CS touchpoints</div>
+          <div class="card-body">Map onboarding sequences, check-in cadences, and escalation paths. Identify gaps, manual steps, and where accounts go quiet between handoffs.</div>
+          <div class="card-foot"><span class="tag tag-1">Process</span><span class="priority"><span class="pdot" style="background:var(--blue)"></span>High</span></div>
+        </div>
+
+        <div class="card" draggable="true" data-tag="Customer">
+          <div class="card-title">Interview 6–8 business accounts</div>
+          <div class="card-body">Direct conversations with admins and end users. Understand where adoption is real, where it's stalled, and what's blocking progress.</div>
+          <div class="card-foot"><span class="tag tag-1">Customer</span><span class="priority"><span class="pdot" style="background:var(--blue)"></span>High</span></div>
+        </div>
+
+        <div class="card" draggable="true" data-tag="Internal">
+          <div class="card-title">Shadow sales handoffs and support queues</div>
+          <div class="card-body">Trace how information moves from sale to support. Identify where context is lost and what a new account's first 60 days actually look like.</div>
+          <div class="card-foot"><span class="tag tag-1">Internal</span><span class="priority"><span class="pdot" style="background:#d97706"></span>Med</span></div>
+        </div>
+
+        <div class="card" draggable="true" data-tag="Process">
+          <div class="card-title">Document the current baseline</div>
+          <div class="card-body">Retention rate, expansion revenue, time-to-value, license utilization. Establishes the measurement foundation for everything that follows.</div>
+          <div class="card-foot"><span class="tag tag-1">Process</span><span class="priority"><span class="pdot" style="background:var(--blue)"></span>High</span></div>
+        </div>
+
+      </div>
+      <div class="milestone">
+        <div class="milestone-label">Day 30 Deliverable</div>
+        <div class="milestone-text">Audit complete &middot; interviews done &middot; baseline documented</div>
+      </div>
+    </div>
+
+    <!-- COL 2 -->
+    <div class="col c2">
+      <div class="col-head">
+        <div class="col-num">2</div>
+        <div class="col-title-wrap">
+          <div class="col-title">Build &amp; Systematize</div>
+          <div class="col-dates">Days 31 – 60</div>
+        </div>
+        <div class="col-count" id="count-2">4</div>
+      </div>
+      <div class="col-body" id="body-2" data-col="2">
+
+        <div class="card" draggable="true" data-tag="Process">
+          <div class="card-title">Design the customer journey map</div>
+          <div class="card-body">Stage-by-stage from contract through renewal. Clear ownership and defined success criteria at each phase. Documented, not assumed.</div>
+          <div class="card-foot"><span class="tag tag-2">Process</span><span class="priority"><span class="pdot" style="background:var(--blue)"></span>High</span></div>
+        </div>
+
+        <div class="card" draggable="true" data-tag="Process">
+          <div class="card-title">Build the onboarding playbook</div>
+          <div class="card-body">Standardized first-30-days for every business account. Templates, automated touchpoints, milestone check-ins. Repeatable and transferable.</div>
+          <div class="card-foot"><span class="tag tag-2">Process</span><span class="priority"><span class="pdot" style="background:var(--blue)"></span>High</span></div>
+        </div>
+
+        <div class="card featured" draggable="true" data-tag="Health Score">
+          <div class="card-title">Draft the account health score framework</div>
+          <div class="card-body">Define variables and weights: weekly active users, first logins, course completions, certificate series, user maturity distribution. Logic-first, built for HubSpot.</div>
+          <div class="card-foot"><span class="tag tag-1">Health Score</span><span class="priority"><span class="pdot" style="background:var(--blue)"></span>High</span></div>
+        </div>
+
+        <div class="card" draggable="true" data-tag="Internal">
+          <div class="card-title">Establish CS–to–Product feedback loop</div>
+          <div class="card-body">Structured channel for routing customer insights to product — tagged, categorized, and tied to real account data.</div>
+          <div class="card-foot"><span class="tag tag-2">Internal</span><span class="priority"><span class="pdot" style="background:#d97706"></span>Med</span></div>
+        </div>
+
+      </div>
+      <div class="milestone">
+        <div class="milestone-label">Day 60 Deliverable</div>
+        <div class="milestone-text">Journey map live &middot; playbook drafted &middot; health score model defined</div>
+      </div>
+    </div>
+
+    <!-- COL 3 -->
+    <div class="col c3">
+      <div class="col-head">
+        <div class="col-num">3</div>
+        <div class="col-title-wrap">
+          <div class="col-title">Activate &amp; Prove</div>
+          <div class="col-dates">Days 61 – 90</div>
+        </div>
+        <div class="col-count" id="count-3">4</div>
+      </div>
+      <div class="col-body" id="body-3" data-col="3">
+
+        <div class="card featured" draggable="true" data-tag="Health Score">
+          <div class="card-title">Launch health score v1 in HubSpot</div>
+          <div class="card-body">Roll out across all accounts. Segment by tier — high-touch, tech-touch, at-risk. CS time allocated by signal, not volume.</div>
+          <div class="card-foot"><span class="tag tag-1">Health Score</span><span class="priority"><span class="pdot" style="background:var(--blue)"></span>High</span></div>
+        </div>
+
+        <div class="card" draggable="true" data-tag="Health Score">
+          <div class="card-title">Implement early warning triggers</div>
+          <div class="card-body">Automated alerts for usage drops, stalled learners, low certificate rates, and disengaged admins. Proactive outreach before risk surfaces.</div>
+          <div class="card-foot"><span class="tag tag-3">Health Score</span><span class="priority"><span class="pdot" style="background:var(--blue)"></span>High</span></div>
+        </div>
+
+        <div class="card" draggable="true" data-tag="Customer">
+          <div class="card-title">QBR framework and expansion motion</div>
+          <div class="card-body">Structured review that surfaces ROI from the account's own adoption data. Expansion conversations tied to outcomes, not pitch cycles.</div>
+          <div class="card-foot"><span class="tag tag-3">Customer</span><span class="priority"><span class="pdot" style="background:#d97706"></span>Med</span></div>
+        </div>
+
+        <div class="card" draggable="true" data-tag="Internal">
+          <div class="card-title">90-day retrospective and CS roadmap</div>
+          <div class="card-body">Leadership presentation: what changed, what the data shows, months 4–12 plan. Built from real signal.</div>
+          <div class="card-foot"><span class="tag tag-3">Internal</span><span class="priority"><span class="pdot" style="background:#d97706"></span>Med</span></div>
+        </div>
+
+      </div>
+      <div class="milestone">
+        <div class="milestone-label">Day 90 Deliverable</div>
+        <div class="milestone-text">Health score live &middot; early warnings active &middot; retro presented</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════
+     PAGE 2 — HEALTH SCORE
+══════════════════════════ -->
+<div class="page" id="page-health">
+  <div class="hs-page">
+
+    <div class="hs-header">
+      <div>
+        <div class="hs-title">Account <span>Health</span></div>
+        <div class="hs-subtitle">Scores reflect adoption activity, engagement, and renewal risk &nbsp;·&nbsp; Updated weekly</div>
+      </div>
+    </div>
+
+    <div class="hs-summary">
+      <div class="summary-card s-blue">
+        <div class="summary-label">Total Accounts</div>
+        <div class="summary-num">18</div>
+        <div class="summary-sub">Across 2 reps</div>
+      </div>
+      <div class="summary-card s-good">
+        <div class="summary-label">Healthy</div>
+        <div class="summary-num">11</div>
+        <div class="summary-sub">Score 70+</div>
+      </div>
+      <div class="summary-card s-warn">
+        <div class="summary-label">Needs Attention</div>
+        <div class="summary-num">4</div>
+        <div class="summary-sub">Score 45–69</div>
+      </div>
+      <div class="summary-card s-alert">
+        <div class="summary-label">Action Recommended</div>
+        <div class="summary-num">3</div>
+        <div class="summary-sub">Score below 45</div>
+      </div>
+    </div>
+
+    <div class="attention-section">
+      <div class="attention-title"><span class="attention-dot"></span>Action Recommended</div>
+      <div class="attention-items">
+        <div class="attention-item">
+          <div class="attention-account">Account 3</div>
+          <div class="attention-rep">Rep: Brittany</div>
+          <div class="attention-reason">No logins in 21 days. 4 of 30 licenses activated. Admin unresponsive since onboarding.</div>
+        </div>
+        <div class="attention-item">
+          <div class="attention-account">Account 11</div>
+          <div class="attention-rep">Rep: Noah</div>
+          <div class="attention-reason">0 certificates completed. Usage down 60% over 30 days. Renewal in 6 weeks.</div>
+        </div>
+        <div class="attention-item">
+          <div class="attention-account">Account 15</div>
+          <div class="attention-rep">Rep: Noah</div>
+          <div class="attention-reason">Exec sponsor changed. New contact has not logged in. Expansion conversation stalled.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brittany -->
+    <div class="rep-section">
+      <div class="rep-label"><span class="rep-dot" style="background:var(--blue)"></span>Brittany &nbsp;·&nbsp; 9 Accounts</div>
+      <table class="account-table">
+        <thead><tr>
+          <th>Account</th><th>Health Score</th><th>Status</th><th>Adoption Mix</th><th>Renewal</th><th></th>
+        </tr></thead>
+        <tbody>
+          <tr class="account-row tier-healthy">
+            <td>Account 1</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:88%"></div></div><span class="score-num">88</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:52px"></div><div class="adopt-seg" style="background:#4ade80;width:32px"></div><div class="adopt-seg" style="background:#bbf7d0;width:16px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q3</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-healthy">
+            <td>Account 2</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:76%"></div></div><span class="score-num">76</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:42px"></div><div class="adopt-seg" style="background:#4ade80;width:32px"></div><div class="adopt-seg" style="background:#bbf7d0;width:16px"></div><div class="adopt-seg" style="background:#dcfce7;width:10px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q4</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-risk">
+            <td>Account 3</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:28%"></div></div><span class="score-num">28</span></div></td>
+            <td><span class="status-badge status-risk">Action Recommended</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#fca5a5;width:10px"></div><div class="adopt-seg" style="background:#fecaca;width:20px"></div><div class="adopt-seg" style="background:#fee2e2;width:30px"></div><div class="adopt-seg" style="background:#fff5f5;width:40px;border:1px solid #fca5a5"></div></div></td>
+            <td style="color:#dc2626;font-size:12px;font-weight:600">6 wks</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-healthy">
+            <td>Account 4</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:82%"></div></div><span class="score-num">82</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:48px"></div><div class="adopt-seg" style="background:#4ade80;width:28px"></div><div class="adopt-seg" style="background:#bbf7d0;width:24px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q2</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-watch">
+            <td>Account 5</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:54%"></div></div><span class="score-num">54</span></div></td>
+            <td><span class="status-badge status-watch">Needs Attention</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:26px"></div><div class="adopt-seg" style="background:#4ade80;width:22px"></div><div class="adopt-seg" style="background:#fde68a;width:28px"></div><div class="adopt-seg" style="background:#fef3c7;width:24px"></div></div></td>
+            <td style="color:#d97706;font-size:12px;font-weight:500">Q2</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-healthy">
+            <td>Account 6</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:91%"></div></div><span class="score-num">91</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:58px"></div><div class="adopt-seg" style="background:#4ade80;width:26px"></div><div class="adopt-seg" style="background:#bbf7d0;width:16px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q3</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-watch">
+            <td>Account 7</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:61%"></div></div><span class="score-num">61</span></div></td>
+            <td><span class="status-badge status-watch">Needs Attention</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:30px"></div><div class="adopt-seg" style="background:#4ade80;width:24px"></div><div class="adopt-seg" style="background:#fde68a;width:24px"></div><div class="adopt-seg" style="background:#fef3c7;width:22px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q4</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-healthy">
+            <td>Account 8</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:79%"></div></div><span class="score-num">79</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:44px"></div><div class="adopt-seg" style="background:#4ade80;width:30px"></div><div class="adopt-seg" style="background:#bbf7d0;width:26px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q1</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-healthy">
+            <td>Account 9</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:73%"></div></div><span class="score-num">73</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:38px"></div><div class="adopt-seg" style="background:#4ade80;width:30px"></div><div class="adopt-seg" style="background:#bbf7d0;width:20px"></div><div class="adopt-seg" style="background:#dcfce7;width:12px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q3</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Noah -->
+    <div class="rep-section">
+      <div class="rep-label"><span class="rep-dot" style="background:var(--black)"></span>Noah &nbsp;·&nbsp; 9 Accounts</div>
+      <table class="account-table">
+        <thead><tr>
+          <th>Account</th><th>Health Score</th><th>Status</th><th>Adoption Mix</th><th>Renewal</th><th></th>
+        </tr></thead>
+        <tbody>
+          <tr class="account-row tier-healthy">
+            <td>Account 10</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:85%"></div></div><span class="score-num">85</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:50px"></div><div class="adopt-seg" style="background:#4ade80;width:28px"></div><div class="adopt-seg" style="background:#bbf7d0;width:22px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q2</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-risk">
+            <td>Account 11</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:32%"></div></div><span class="score-num">32</span></div></td>
+            <td><span class="status-badge status-risk">Action Recommended</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#fca5a5;width:8px"></div><div class="adopt-seg" style="background:#fecaca;width:14px"></div><div class="adopt-seg" style="background:#fee2e2;width:28px"></div><div class="adopt-seg" style="background:#fff5f5;width:50px;border:1px solid #fca5a5"></div></div></td>
+            <td style="color:#dc2626;font-size:12px;font-weight:600">6 wks</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-healthy">
+            <td>Account 12</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:70%"></div></div><span class="score-num">70</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:36px"></div><div class="adopt-seg" style="background:#4ade80;width:30px"></div><div class="adopt-seg" style="background:#bbf7d0;width:22px"></div><div class="adopt-seg" style="background:#dcfce7;width:12px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q4</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-watch">
+            <td>Account 13</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:48%"></div></div><span class="score-num">48</span></div></td>
+            <td><span class="status-badge status-watch">Needs Attention</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:22px"></div><div class="adopt-seg" style="background:#4ade80;width:20px"></div><div class="adopt-seg" style="background:#fde68a;width:28px"></div><div class="adopt-seg" style="background:#fef3c7;width:30px"></div></div></td>
+            <td style="color:#d97706;font-size:12px;font-weight:500">Q3</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-healthy">
+            <td>Account 14</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:94%"></div></div><span class="score-num">94</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:60px"></div><div class="adopt-seg" style="background:#4ade80;width:24px"></div><div class="adopt-seg" style="background:#bbf7d0;width:16px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q1</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-risk">
+            <td>Account 15</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:38%"></div></div><span class="score-num">38</span></div></td>
+            <td><span class="status-badge status-risk">Action Recommended</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#fca5a5;width:12px"></div><div class="adopt-seg" style="background:#fecaca;width:18px"></div><div class="adopt-seg" style="background:#fee2e2;width:26px"></div><div class="adopt-seg" style="background:#fff5f5;width:44px;border:1px solid #fca5a5"></div></div></td>
+            <td style="color:#dc2626;font-size:12px;font-weight:600">8 wks</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-healthy">
+            <td>Account 16</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:77%"></div></div><span class="score-num">77</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:42px"></div><div class="adopt-seg" style="background:#4ade80;width:30px"></div><div class="adopt-seg" style="background:#bbf7d0;width:28px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q2</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-watch">
+            <td>Account 17</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:57%"></div></div><span class="score-num">57</span></div></td>
+            <td><span class="status-badge status-watch">Needs Attention</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:28px"></div><div class="adopt-seg" style="background:#4ade80;width:22px"></div><div class="adopt-seg" style="background:#fde68a;width:26px"></div><div class="adopt-seg" style="background:#fef3c7;width:24px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q3</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+          <tr class="account-row tier-healthy">
+            <td>Account 18</td>
+            <td><div class="score-wrap"><div class="score-bar-track"><div class="score-bar-fill" style="width:83%"></div></div><span class="score-num">83</span></div></td>
+            <td><span class="status-badge status-healthy">Healthy</span></td>
+            <td><div class="adopt-wrap"><div class="adopt-seg" style="background:#16a34a;width:46px"></div><div class="adopt-seg" style="background:#4ade80;width:28px"></div><div class="adopt-seg" style="background:#bbf7d0;width:26px"></div></div></td>
+            <td style="color:var(--muted);font-size:12px">Q4</td>
+            <td><a class="explore-link" href="#">Explore</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // PAGE SWITCHING
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('page-' + tab.dataset.page).classList.add('active');
+    });
+  });
+
+  // SHRINKING HEADER
+  const kanbanPage   = document.getElementById('page-kanban');
+  const kanbanHeader = document.getElementById('kanban-header');
+  kanbanPage.addEventListener('scroll', () => {
+    kanbanHeader.classList.toggle('compact', kanbanPage.scrollTop > 50);
+  });
+
+  // DRAG & DROP
+  let dragged = null, ghost = null;
+
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('dragstart', e => {
+      dragged = card;
+      setTimeout(() => card.classList.add('dragging'), 0);
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      document.querySelectorAll('.col-body').forEach(b => b.classList.remove('drag-over'));
+      if (ghost?.parentNode) ghost.parentNode.removeChild(ghost);
+      ghost = null; dragged = null;
+      updateCounts();
+    });
+  });
+
+  document.querySelectorAll('.col-body').forEach(body => {
+    body.addEventListener('dragover', e => {
+      e.preventDefault();
+      body.classList.add('drag-over');
+      if (!ghost) { ghost = document.createElement('div'); ghost.className = 'card-ghost'; }
+      const after = getAfter(body, e.clientY);
+      after ? body.insertBefore(ghost, after) : body.appendChild(ghost);
+    });
+    body.addEventListener('dragleave', e => {
+      if (!body.contains(e.relatedTarget)) {
+        body.classList.remove('drag-over');
+        if (ghost?.parentNode === body) body.removeChild(ghost);
+      }
+    });
+    body.addEventListener('drop', e => {
+      e.preventDefault();
+      body.classList.remove('drag-over');
+      if (!dragged) return;
+      if (ghost?.parentNode) ghost.parentNode.removeChild(ghost);
+      ghost = null;
+      const after = getAfter(body, e.clientY);
+      after ? body.insertBefore(dragged, after) : body.appendChild(dragged);
+      const col = body.dataset.col;
+      const tag = dragged.querySelector('.tag');
+      if (tag) { tag.classList.remove('tag-1','tag-2','tag-3'); tag.classList.add('tag-' + col); }
+      updateCounts();
+    });
+  });
+
+  function getAfter(container, y) {
+    return [...container.querySelectorAll('.card:not(.dragging)')]
+      .reduce((closest, child) => {
+        const { top, height } = child.getBoundingClientRect();
+        const offset = y - top - height / 2;
+        return offset < 0 && offset > closest.offset ? { offset, element: child } : closest;
+      }, { offset: -Infinity }).element;
+  }
+
+  function updateCounts() {
+    [1,2,3].forEach(n => {
+      document.getElementById('count-'+n).textContent =
+        document.querySelectorAll(`#body-${n} .card:not(.hidden)`).length;
+    });
+  }
+
+  // FILTER
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.card').forEach(card => {
+        card.classList.toggle('hidden', f !== 'all' && card.dataset.tag !== f);
+      });
+      updateCounts();
+    });
+  });
+</script>
+</body>
+</html>
