@@ -94,6 +94,20 @@
     background: rgba(255, 255, 255, 0.12);
   }
 
+  .nav-center {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-storyline {
+    padding-left: 8px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(236, 243, 251, 0.78);
+  }
+
   .nav-indicator {
     position: absolute;
     bottom: 2px;
@@ -504,7 +518,7 @@
 
   .health-page,
   .build-page {
-    padding: 34px 40px 56px;
+    padding: 46px 40px 60px;
     background: var(--bg);
   }
 
@@ -512,24 +526,25 @@
     display: flex;
     align-items: end;
     justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 24px;
+    gap: 24px;
+    margin-bottom: 32px;
     flex-wrap: wrap;
   }
 
   .brand-lockup {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 8px 12px;
+    gap: 14px;
+    padding: 10px 14px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.78);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
+    margin-bottom: 12px;
   }
 
   .brand-lockup .brand-logo {
-    height: 28px;
+    height: 30px;
   }
 
   .brand-lockup span {
@@ -541,7 +556,7 @@
   }
 
   .page-title {
-    font-size: clamp(28px, 3vw, 34px);
+    font-size: clamp(30px, 3vw, 36px);
     font-weight: 850;
     line-height: 1.1;
     letter-spacing: -0.04em;
@@ -550,8 +565,9 @@
   .page-title span { color: var(--teal); }
 
   .page-subtitle {
-    margin-top: 6px;
-    font-size: 14px;
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.7;
     color: var(--muted);
   }
 
@@ -559,6 +575,18 @@
     margin-top: 6px;
     font-size: 12px;
     color: #7c8da1;
+  }
+
+  .framing-note {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.74);
+    border: 1px solid var(--border);
+    color: #64748b;
+    font-size: 13px;
+    font-style: italic;
+    line-height: 1.7;
   }
 
   .summary-grid {
@@ -959,8 +987,8 @@
   }
 
   .info-card h3 {
-    margin-bottom: 18px;
-    font-size: 18px;
+    margin-bottom: 14px;
+    font-size: 20px;
     font-weight: 850;
     letter-spacing: -0.02em;
   }
@@ -1518,8 +1546,27 @@
   .callout-text {
     max-width: 780px;
     color: #334155;
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .build-bullets {
+    display: grid;
+    gap: 12px;
+    padding-left: 22px;
+    margin: 0;
+    color: #475569;
+  }
+
+  .build-bullets li {
+    font-size: 15px;
     line-height: 1.75;
+    padding-left: 2px;
+  }
+
+  .build-bullets li::marker {
+    color: var(--teal);
+    font-size: 1.05em;
   }
 
   .modal-backdrop {
@@ -1785,6 +1832,10 @@
       margin-left: 0;
     }
 
+    .nav-center {
+      width: 100%;
+    }
+
     .toolbar,
     .kanban-header,
     .board-wrap,
@@ -1831,11 +1882,14 @@
       <img class="brand-logo" src="../assets/ai-academy-smarterx-logo.webp" alt="AI Academy by SmarterX">
     </div>
 
-    <div class="nav-tabs" id="nav-tabs">
-      <div class="nav-indicator" id="nav-indicator" aria-hidden="true"></div>
-      <button class="nav-tab active" data-page="kanban">90-Day Plan</button>
-      <button class="nav-tab" data-page="health">Account Health</button>
-      <button class="nav-tab" data-page="build">HubSpot Build</button>
+    <div class="nav-center">
+      <div class="nav-tabs" id="nav-tabs">
+        <div class="nav-indicator" id="nav-indicator" aria-hidden="true"></div>
+        <button class="nav-tab active" data-page="kanban">My First 90 Days</button>
+        <button class="nav-tab" data-page="health">Account Health Dashboard</button>
+        <button class="nav-tab" data-page="build">HubSpot + Health Score</button>
+      </div>
+      <div class="nav-storyline">My Plan · My Dashboard · My Build Strategy</div>
     </div>
 
     <div class="nav-right">Brittany Passavanti · Customer Success Manager</div>
@@ -1850,22 +1904,10 @@
           </div>
           <div class="header-meta">
             <div class="meta-item"><div class="meta-num"><span>3</span></div><div class="meta-label">Phases</div></div>
-            <div class="meta-item"><div class="meta-num"><span>12</span></div><div class="meta-label">Initiatives</div></div>
+            <div class="meta-item"><div class="meta-num"><span>14</span></div><div class="meta-label">Initiatives</div></div>
             <div class="meta-item"><div class="meta-num"><span>90</span></div><div class="meta-label">Days</div></div>
           </div>
         </div>
-      </div>
-
-      <div class="toolbar">
-        <span class="toolbar-label">Filter</span>
-        <div class="filter-btns">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="Process">Process</button>
-          <button class="filter-btn" data-filter="Health Score">Health Score</button>
-          <button class="filter-btn" data-filter="Customer">Customer</button>
-          <button class="filter-btn" data-filter="Internal">Internal</button>
-        </div>
-        <div class="toolbar-hint">Cards are draggable between phases</div>
       </div>
 
       <div class="board-wrap">
@@ -1874,39 +1916,57 @@
             <div class="col-head">
               <div class="col-num">1</div>
               <div>
-                <div class="col-title">Listen &amp; Map</div>
+                <div class="col-title">Listen &amp; Learn</div>
                 <div class="col-dates">Days 1 – 30</div>
               </div>
-              <div class="col-count" id="count-1">4</div>
+              <div class="col-count" id="count-1">7</div>
             </div>
             <div class="col-body" id="body-1" data-col="1">
-              <div class="card" draggable="true" data-tag="Process" data-card-id="audit-touchpoints">
-                <div class="card-title">Audit existing CS touchpoints</div>
-                <div class="card-body">Map onboarding sequences, check-in cadences, and escalation paths. Identify gaps, manual steps, and where accounts go quiet between handoffs.</div>
-                <div class="card-foot"><span class="tag tag-1">Process</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>High</span></div>
+              <div class="card" draggable="true" data-card-id="complete-courses">
+                <div class="card-title">Get familiar with the AI Academy platform</div>
+                <div class="card-body">Take some courses, get the customer experience, learn the dashboard, and understand where the platform feels intuitive versus where it may create friction.</div>
+                <div class="card-foot"><span class="tag tag-1">Learning</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>Priority</span></div>
               </div>
 
-              <div class="card" draggable="true" data-tag="Customer" data-card-id="interview-accounts">
-                <div class="card-title">Interview 6–8 business accounts</div>
-                <div class="card-body">Direct conversations with admins and end users. Understand where adoption is real, where it's stalled, and what's blocking progress.</div>
-                <div class="card-foot"><span class="tag tag-1">Customer</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>High</span></div>
+              <div class="card" draggable="true" data-card-id="meet-noah">
+                <div class="card-title">Meet 1:1 with Noah (current CSM)</div>
+                <div class="card-body">Learn his book of business, what's working, what he'd do differently. Understand which accounts are smooth and which are fragile before I touch anything.</div>
+                <div class="card-foot"><span class="tag tag-1">Team</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>Priority</span></div>
               </div>
 
-              <div class="card" draggable="true" data-tag="Internal" data-card-id="shadow-handoffs">
-                <div class="card-title">Shadow sales handoffs and support queues</div>
-                <div class="card-body">Trace how information moves from sale to support. Identify where context is lost and what a new account's first 60 days actually look like.</div>
-                <div class="card-foot"><span class="tag tag-1">Internal</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Med</span></div>
+              <div class="card" draggable="true" data-card-id="meet-enterprise-csm">
+                <div class="card-title">Meet 1:1 with the incoming Enterprise CSM</div>
+                <div class="card-body">Align on how we'll divide accounts, share learnings from onboarding, and avoid duplicating work as the team grows.</div>
+                <div class="card-foot"><span class="tag tag-1">Team</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Important</span></div>
               </div>
 
-              <div class="card" draggable="true" data-tag="Process" data-card-id="document-baseline">
-                <div class="card-title">Document the current baseline</div>
-                <div class="card-body">Retention rate, expansion revenue, time-to-value, license utilization. Establishes the measurement foundation for everything that follows.</div>
-                <div class="card-foot"><span class="tag tag-1">Process</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>High</span></div>
+              <div class="card" draggable="true" data-card-id="shadow-dia">
+                <div class="card-title">Shadow Dia (Sales Manager) on 3–5 new deal handoffs</div>
+                <div class="card-body">Understand exactly what customers are promised during the sale so I know what expectations I'm inheriting on day one of onboarding.</div>
+                <div class="card-foot"><span class="tag tag-1">Sales</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>Priority</span></div>
+              </div>
+
+              <div class="card" draggable="true" data-card-id="absorb-brand">
+                <div class="card-title">Absorb the brand: voice, positioning, and customer language</div>
+                <div class="card-body">Review SmarterX messaging, customer-facing materials, and how the team talks about AI readiness. I need to sound like SmarterX, not just CS.</div>
+                <div class="card-foot"><span class="tag tag-1">Brand</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Important</span></div>
+              </div>
+
+              <div class="card" draggable="true" data-card-id="sit-in-calls">
+                <div class="card-title">Sit in on customer calls (as many as possible)</div>
+                <div class="card-body">Observe onboarding calls, check-ins, and anything in between. Learn what "good" looks like here before building anything.</div>
+                <div class="card-foot"><span class="tag tag-1">Customer</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>Priority</span></div>
+              </div>
+
+              <div class="card" draggable="true" data-card-id="own-accounts">
+                <div class="card-title">Own my first 3–5 accounts independently</div>
+                <div class="card-body">Take full ownership of a small portfolio early enough to apply what I’m learning in real customer situations, not just in observation mode.</div>
+                <div class="card-foot"><span class="tag tag-1">Customer</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>Priority</span></div>
               </div>
             </div>
             <div class="milestone">
-              <div class="milestone-label">Day 30 Deliverable</div>
-              <div class="milestone-text">Audit complete · interviews done · baseline documented</div>
+              <div class="milestone-label">Day 30 Check-In</div>
+              <div class="milestone-text">Share observations with Manager — what I've learned, what questions I still have, where I see early opportunity.</div>
             </div>
           </div>
 
@@ -1914,39 +1974,39 @@
             <div class="col-head">
               <div class="col-num">2</div>
               <div>
-                <div class="col-title">Build &amp; Systematize</div>
+                <div class="col-title">Contribute &amp; Build</div>
                 <div class="col-dates">Days 31 – 60</div>
               </div>
               <div class="col-count" id="count-2">4</div>
             </div>
             <div class="col-body" id="body-2" data-col="2">
-              <div class="card" draggable="true" data-tag="Process" data-card-id="journey-map">
-                <div class="card-title">Design the customer journey map</div>
-                <div class="card-body">Stage-by-stage from contract through renewal. Clear ownership and defined success criteria at each phase. Documented, not assumed.</div>
-                <div class="card-foot"><span class="tag tag-2">Process</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>High</span></div>
+              <div class="card" draggable="true" data-card-id="run-training">
+                <div class="card-title">Work with Dia on where onboarding should be hands-on vs. automated</div>
+                <div class="card-body">Decide where accounts need hands-on onboarding, where we're ready to test automated onboarding, and identify where my own customers are getting stuck.</div>
+                <div class="card-foot"><span class="tag tag-2">Training</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>Priority</span></div>
               </div>
 
-              <div class="card" draggable="true" data-tag="Process" data-card-id="onboarding-playbook">
-                <div class="card-title">Build the onboarding playbook</div>
-                <div class="card-body">Standardized first-30-days for every business account. Templates, automated touchpoints, milestone check-ins. Repeatable and transferable.</div>
-                <div class="card-foot"><span class="tag tag-2">Process</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>High</span></div>
+              <div class="card" draggable="true" data-card-id="identify-systems">
+                <div class="card-title">Begin identifying systems we can put into place</div>
+                <div class="card-body">Work with the Enterprise CSM, Noah, and Sales to identify systems, automation, and AI tools that should exist beyond individual effort and start shaping how they could work.</div>
+                <div class="card-foot"><span class="tag tag-2">Systems</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Important</span></div>
               </div>
 
-              <div class="card featured" draggable="true" data-tag="Health Score" data-card-id="draft-health-model">
-                <div class="card-title">Draft the account health score framework</div>
-                <div class="card-body">Define variables and weights: weekly active users, first logins, course completions, certificate series, user maturity distribution. Logic-first, built for HubSpot.</div>
-                <div class="card-foot"><span class="tag tag-1">Health Score</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>High</span></div>
+              <div class="card featured" draggable="true" data-card-id="draft-onboarding">
+                <div class="card-title">Draft the onboarding checklist and first-30-days template</div>
+                <div class="card-body">Based on what I've observed, create a repeatable structure for every new business account. First draft only — meant to be pressure-tested.</div>
+                <div class="card-foot"><span class="tag tag-2">Process</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Important</span></div>
               </div>
 
-              <div class="card" draggable="true" data-tag="Internal" data-card-id="feedback-loop">
-                <div class="card-title">Establish CS–to–Product feedback loop</div>
-                <div class="card-body">Structured channel for routing customer insights to product — tagged, categorized, and tied to real account data.</div>
-                <div class="card-foot"><span class="tag tag-2">Internal</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Med</span></div>
+              <div class="card" draggable="true" data-card-id="propose-health-score">
+                <div class="card-title">Begin thinking about health score inputs from lived CSM experience</div>
+                <div class="card-body">Start forming a point of view on what signals matter most based on what I am actually seeing as a CSM: logins, course completions, cert rates, admin responsiveness, and where accounts stall.</div>
+                <div class="card-foot"><span class="tag tag-2">Health Score</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>Priority</span></div>
               </div>
             </div>
             <div class="milestone">
-              <div class="milestone-label">Day 60 Deliverable</div>
-              <div class="milestone-text">Journey map live · playbook drafted · health score model defined</div>
+              <div class="milestone-label">Day 60 Check-In</div>
+              <div class="milestone-text">Share draft onboarding template and early health score thinking with Manager. Get feedback before building.</div>
             </div>
           </div>
 
@@ -1954,46 +2014,41 @@
             <div class="col-head">
               <div class="col-num">3</div>
               <div>
-                <div class="col-title">Activate &amp; Prove</div>
+                <div class="col-title">Prove &amp; Systematize</div>
                 <div class="col-dates">Days 61 – 90</div>
               </div>
               <div class="col-count" id="count-3">4</div>
             </div>
             <div class="col-body" id="body-3" data-col="3">
-              <div class="card featured" draggable="true" data-tag="Health Score" data-card-id="launch-score-v1">
-                <div class="card-title">Launch health score v1 in HubSpot</div>
-                <div class="card-body">Roll out across all accounts. Segment by tier — high-touch, tech-touch, at-risk. CS time allocated by signal, not volume.</div>
-                <div class="card-foot"><span class="tag tag-1">Health Score</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>High</span></div>
+              <div class="card featured" draggable="true" data-card-id="refine-playbook">
+                <div class="card-title">Refine and socialize the onboarding playbook</div>
+                <div class="card-body">Incorporate feedback from Phase 2 and work alongside Noah and the Enterprise CSM to pressure-test it, refine it, and document a version that works across the team.</div>
+                <div class="card-foot"><span class="tag tag-3">Playbook</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>Priority</span></div>
               </div>
 
-              <div class="card" draggable="true" data-tag="Health Score" data-card-id="warning-triggers">
-                <div class="card-title">Implement early warning triggers</div>
-                <div class="card-body">Automated alerts for usage drops, stalled learners, low certificate rates, and disengaged admins. Proactive outreach before risk surfaces.</div>
-                <div class="card-foot"><span class="tag tag-3">Health Score</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>High</span></div>
+              <div class="card" draggable="true" data-card-id="begin-hubspot-pilot">
+                <div class="card-title">Begin health score implementation in HubSpot</div>
+                <div class="card-body">Support an initial pilot in HubSpot alongside Noah and the Enterprise CSM. Help shape the inputs, pressure-test the logic, and learn from 3–5 accounts before anything scales.</div>
+                <div class="card-foot"><span class="tag tag-3">Pilot</span><span class="priority"><span class="pdot" style="background:var(--teal)"></span>Priority</span></div>
               </div>
 
-              <div class="card" draggable="true" data-tag="Customer" data-card-id="qbr-expansion">
-                <div class="card-title">QBR framework and expansion motion</div>
-                <div class="card-body">Structured review that surfaces ROI from the account's own adoption data. Expansion conversations tied to outcomes, not pitch cycles.</div>
-                <div class="card-foot"><span class="tag tag-3">Customer</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Med</span></div>
+              <div class="card" draggable="true" data-card-id="run-qbr">
+                <div class="card-title">Run first QBR with a key account</div>
+                <div class="card-body">Structured review using their own adoption data. Test the format, see what resonates, refine for scale.</div>
+                <div class="card-foot"><span class="tag tag-3">Customer</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Important</span></div>
               </div>
 
-              <div class="card" draggable="true" data-tag="Internal" data-card-id="retro-roadmap">
-                <div class="card-title">90-day retrospective and CS roadmap</div>
-                <div class="card-body">Leadership presentation: what changed, what the data shows, months 4–12 plan. Built from real signal.</div>
-                <div class="card-foot"><span class="tag tag-3">Internal</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Med</span></div>
+              <div class="card" draggable="true" data-card-id="retro-manager">
+                <div class="card-title">90-day retrospective with Manager</div>
+                <div class="card-body">What I learned, what I built, what changed. Where I want to go in months 4–12. Come with the roadmap, not just the recap.</div>
+                <div class="card-foot"><span class="tag tag-3">Leadership</span><span class="priority"><span class="pdot" style="background:var(--amber)"></span>Important</span></div>
               </div>
             </div>
             <div class="milestone">
               <div class="milestone-label">Day 90 Deliverable</div>
-              <div class="milestone-text">Health score live · early warnings active · retro presented</div>
+              <div class="milestone-text">Playbook documented · health score pilot live · retro presented</div>
             </div>
           </div>
-        </div>
-
-        <div class="empty-state" id="empty-state">
-          <strong>No initiatives match this filter</strong>
-          Refine the selected pill to return to the full plan.
         </div>
       </div>
     </section>
@@ -2002,11 +2057,12 @@
       <div class="health-page">
         <div class="page-header">
           <div>
-            <div class="page-title">Account <span>Health</span></div>
+            <div class="page-title">Account <span>Health Dashboard</span></div>
             <div class="page-subtitle">Scores reflect adoption activity, engagement, and renewal risk</div>
             <div class="page-submeta">Last updated: March 26, 2026</div>
           </div>
         </div>
+        <div class="framing-note">This is Brittany's visualization of how she'd think about account health monitoring — based on Paul's CS Score framework and the signals that predict adoption, churn, and expansion.</div>
 
         <div class="summary-grid">
           <button class="summary-card s-blue active" data-health-filter="all">
@@ -2264,164 +2320,42 @@
               <img class="brand-logo" src="../assets/hubspot-logo.svg" alt="HubSpot">
               <span>Implementation Partner View</span>
             </div>
-            <div class="page-title">HubSpot <span>Build</span></div>
-            <div class="page-subtitle">Implementation roadmap for operationalizing the health score framework inside HubSpot.</div>
+            <div class="page-title">HubSpot + <span>Health Score</span></div>
+            <div class="page-subtitle">How I imagine this could scale across multiple CSMs, shared workflows, and AI-supported automation.</div>
           </div>
         </div>
 
         <div class="build-grid">
           <div class="info-card">
-            <h3>System Architecture</h3>
-            <div class="architecture-flow">
-              <div class="arch-column">
-                <div class="arch-title">Data Sources</div>
-                <div class="arch-list">
-                  <div class="arch-node">AI Academy LMS <span>course completions, certificates, logins</span></div>
-                  <div class="arch-node">Product Usage API <span>WAU, first logins, license activation</span></div>
-                  <div class="arch-node">HubSpot Service Hub <span>support ticket sentiment</span></div>
-                  <div class="arch-node">CSM Manual Input <span>admin engagement, exec sponsor</span></div>
-                </div>
-              </div>
-              <div class="flow-arrow">→</div>
-              <div class="arch-column">
-                <div class="arch-title">HubSpot Layer</div>
-                <div class="arch-list">
-                  <div class="arch-node">Custom Company Properties</div>
-                  <div class="arch-node">Calculated Health Score Property</div>
-                  <div class="arch-node">Active Lists <span>Healthy / At-Risk / Action</span></div>
-                  <div class="arch-node">HubSpot Reporting Dashboard</div>
-                </div>
-              </div>
-              <div class="flow-arrow">→</div>
-              <div class="arch-column">
-                <div class="arch-title">Automation Outputs</div>
-                <div class="arch-list">
-                  <div class="arch-node arch-node-red">CSM Task + Slack Alert</div>
-                  <div class="arch-node arch-node-amber">Re-engagement Sequence</div>
-                  <div class="arch-node arch-node-red">Escalation to CS Lead</div>
-                  <div class="arch-node arch-node-green">Expansion Playbook Trigger</div>
-                  <div class="arch-node">Auto-populated QBR Template</div>
-                </div>
-              </div>
-            </div>
+            <h3>1. What I Imagine Exists Today</h3>
+            <ul class="build-bullets">
+              <li>Customer records, account notes, and ownership likely live in HubSpot today.</li>
+              <li>Some onboarding and support activity is probably visible already through existing workflows or Service Hub usage.</li>
+              <li>A lot of account context may still live in CSM habit, memory, and one-off process rather than a shared system.</li>
+              <li>The health picture likely exists in pieces, but not yet in one view that multiple CSMs can consistently act on.</li>
+            </ul>
           </div>
 
           <div class="info-card">
-            <div class="build-top-grid">
-              <div>
-                <h3>Health Score Model — HubSpot Custom Properties</h3>
-                <div class="signal-toggle-stack">
-                  <div class="signal-toggle-card open">
-                    <button class="signal-toggle" type="button" data-signal-group="automated">
-                      <span>Automated Signals</span>
-                      <span>5 properties</span>
-                    </button>
-                    <div class="signal-toggle-content">
-                      <div class="signal-row"><strong>Weekly Active Users (WAU)</strong><span>25%</span><span>Product usage API</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>&gt;60%</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>30–60%</span><span class="signal-pill signal-red"><span class="signal-dot"></span>&lt;30%</span></span></div>
-                      <div class="signal-row"><strong>First Logins</strong><span>15%</span><span>Product usage API</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>&gt;80%</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>50–80%</span><span class="signal-pill signal-red"><span class="signal-dot"></span>&lt;50%</span></span></div>
-                      <div class="signal-row"><strong>Course Completions</strong><span>20%</span><span>AI Academy LMS</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>&gt;3/user</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>1–3</span><span class="signal-pill signal-red"><span class="signal-dot"></span>0</span></span></div>
-                      <div class="signal-row"><strong>Certificate Completion Rate</strong><span>15%</span><span>AI Academy LMS</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>&gt;50%</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>25–50%</span><span class="signal-pill signal-red"><span class="signal-dot"></span>&lt;25%</span></span></div>
-                      <div class="signal-row"><strong>Support Ticket Sentiment</strong><span>10%</span><span>Service Hub</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Positive</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Neutral</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Escalated</span></span></div>
-                    </div>
-                  </div>
-                  <div class="signal-toggle-card">
-                    <button class="signal-toggle" type="button" data-signal-group="managed">
-                      <span>CSM-Managed Signals</span>
-                      <span>2 properties</span>
-                    </button>
-                    <div class="signal-toggle-content">
-                      <div class="signal-row"><strong>Admin Engagement</strong><span>10%</span><span>CSM manual input + login date</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Monthly + responsive</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>60+ days</span><span class="signal-pill signal-red"><span class="signal-dot"></span>90+ days</span></span></div>
-                      <div class="signal-row"><strong>Exec Sponsor Status</strong><span>5%</span><span>CSM manual input</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Engaged</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Known, inactive</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Unknown</span></span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="weight-viz-card">
-                <div class="detail-title">Weight Distribution</div>
-                <div class="weight-viz">
-                  <div class="weight-bar"><span>WAU</span><div class="weight-track"><div class="weight-fill" style="width:100%"></div></div><strong>25%</strong></div>
-                  <div class="weight-bar"><span>Course Completions</span><div class="weight-track"><div class="weight-fill" style="width:80%"></div></div><strong>20%</strong></div>
-                  <div class="weight-bar"><span>First Logins</span><div class="weight-track"><div class="weight-fill" style="width:60%"></div></div><strong>15%</strong></div>
-                  <div class="weight-bar"><span>Certificate Rate</span><div class="weight-track"><div class="weight-fill" style="width:60%"></div></div><strong>15%</strong></div>
-                  <div class="weight-bar"><span>Admin Engagement</span><div class="weight-track"><div class="weight-fill" style="width:40%"></div></div><strong>10%</strong></div>
-                  <div class="weight-bar"><span>Ticket Sentiment</span><div class="weight-track"><div class="weight-fill" style="width:40%"></div></div><strong>10%</strong></div>
-                  <div class="weight-bar"><span>Exec Sponsor</span><div class="weight-track"><div class="weight-fill" style="width:20%"></div></div><strong>5%</strong></div>
-                </div>
-              </div>
-            </div>
+            <h3>2. What a Stronger Multi-CSM System Needs</h3>
+            <ul class="build-bullets">
+              <li>A shared place for health signals so Brittany, Noah, and an Enterprise CSM are not each working from private context.</li>
+              <li>Clear ownership, consistent onboarding stages, and visible account status across the team.</li>
+              <li>A way for HubSpot to hold what matters most: account properties, task triggers, views, lists, and leadership reporting.</li>
+              <li>A structure where the health score can either live inside HubSpot or be fed into it from product usage, LMS data, and CSM input.</li>
+            </ul>
           </div>
 
           <div class="info-card">
-            <h3>Build Sequence — 4 Sprints</h3>
-            <div class="sprint-timeline">
-              <button class="sprint-node active" type="button" data-sprint="1"><strong>Sprint 1</strong><span>Foundation · Wks 1–2</span></button>
-              <button class="sprint-node" type="button" data-sprint="2"><strong>Sprint 2</strong><span>Data Pipelines · Wks 3–4</span></button>
-              <button class="sprint-node" type="button" data-sprint="3"><strong>Sprint 3</strong><span>Scoring & Segmentation · Wks 5–6</span></button>
-              <button class="sprint-node" type="button" data-sprint="4"><strong>Sprint 4</strong><span>Automation & Alerts · Wks 7–8</span></button>
-            </div>
-            <div class="sprint-detail-panel active" data-sprint-panel="1">
-              <div>Create all custom contact and company properties in HubSpot.</div>
-              <div>Define property groups: "CS Health Score" at company level.</div>
-              <div>Set up calculated properties for composite score (weighted sum).</div>
-              <div>Map which data flows automatically vs. CSM manual input.</div>
-            </div>
-            <div class="sprint-detail-panel" data-sprint-panel="2">
-              <div>Build HubSpot workflows to ingest product usage data (WAU, first logins).</div>
-              <div>Connect AI Academy LMS data feed → HubSpot (course + cert completions).</div>
-              <div>Set enrollment triggers for new accounts.</div>
-              <div>Test with 3 pilot accounts.</div>
-            </div>
-            <div class="sprint-detail-panel" data-sprint-panel="3">
-              <div>Activate calculated health score property.</div>
-              <div>Build 3 HubSpot active lists: Healthy (70+), Needs Attention (45–69), Action Recommended (&lt;45).</div>
-              <div>Create saved views in CRM for each segment.</div>
-              <div>Build dashboard in HubSpot Reporting for leadership visibility.</div>
-            </div>
-            <div class="sprint-detail-panel" data-sprint-panel="4">
-              <div>Build workflow: score drops below 45 → auto-task to assigned CSM + Slack notification.</div>
-              <div>Build workflow: score drops below 30 → escalation to CS lead.</div>
-              <div>Build workflow: healthy account + renewal in 60 days → trigger expansion playbook.</div>
-              <div>QBR template auto-populated from health score properties.</div>
-            </div>
+            <h3>3. What Automation and AI Tools Could Add</h3>
+            <ul class="build-bullets">
+              <li>Trigger alerts when onboarding stalls, usage drops, or admin engagement disappears.</li>
+              <li>Route tasks and follow-up sequences so multiple CSMs are working from the same system, not personal memory.</li>
+              <li>Surface next-best actions, renewal risk, and expansion signals in a way leadership and CS can both act on.</li>
+              <li>Support account summaries, QBR prep, and workflow suggestions so HubSpot becomes not just a record system, but an operating layer.</li>
+            </ul>
           </div>
 
-          <div class="workflow-card-grid">
-            <div class="info-card workflow-logic-card workflow-risk">
-              <div class="workflow-badge">Active Workflow</div>
-              <h3>At-Risk Alert</h3>
-              <div class="workflow-steps">
-                <div><strong>Trigger:</strong> Health score drops below 45</div>
-                <div>Enroll in "At-Risk" HubSpot Active List</div>
-                <div>Create task for assigned CSM (due: 24hrs)</div>
-                <div>Send internal Slack notification to CS lead</div>
-              </div>
-            </div>
-            <div class="info-card workflow-logic-card workflow-critical">
-              <div class="workflow-badge">Active Workflow</div>
-              <h3>Critical Escalation</h3>
-              <div class="workflow-steps">
-                <div><strong>Trigger:</strong> Health score drops below 30</div>
-                <div>Escalate to CS Manager (auto-assigned task)</div>
-                <div>Pause any active marketing sequences</div>
-                <div>Flag renewal record in HubSpot deals pipeline</div>
-              </div>
-            </div>
-            <div class="info-card workflow-logic-card workflow-growth">
-              <div class="workflow-badge">Active Workflow</div>
-              <h3>Expansion Signal</h3>
-              <div class="workflow-steps">
-                <div><strong>Trigger:</strong> Score 70+ and renewal within 60 days</div>
-                <div>Enroll in Expansion Playbook sequence</div>
-                <div>Generate QBR template (auto-populated)</div>
-                <div>Create "Expansion Opportunity" deal in pipeline</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="info-card callout-card">
-            <h3>Why This Matters — From the CS Blueprint</h3>
-            <div class="callout-text">This build directly maps to the AI for Customer Success Blueprint's core framework: moving from reactive to proactive CS. The health score shifts the team from scheduled check-ins to signal-driven engagement, with AI monitoring behavior and surfacing warning signs before churn becomes inevitable. It also sets up the "natural language analytics" layer because leadership can query account health conversationally once the underlying data is structured in HubSpot. <em>The goal isn't a dashboard. It's a system that tells you which 3 accounts need your attention today — and has already started the process of reaching them.</em></div>
-          </div>
         </div>
       </div>
     </section>
@@ -2434,161 +2368,200 @@
 
 <script>
   const initiativeDetails = {
-    "audit-touchpoints": {
-      title: "Audit existing CS touchpoints",
-      phase: "Listen & Map",
+    "complete-courses": {
+      title: "Get familiar with the AI Academy platform",
+      phase: "Listen & Learn",
       status: "In Progress",
       statusClass: "status-watch",
-      dependencies: "Requires access to the HubSpot reporting dashboard, onboarding templates, and support queue exports so the full customer journey can be mapped end to end.",
+      dependencies: "Requires access to the platform, learner credentials, and enough room to move through the experience like a customer instead of treating it like an internal demo.",
       successCriteria: [
-        "All existing CS touchpoints documented across onboarding, adoption, escalation, and renewal.",
-        "Manual handoffs and missing ownership points clearly flagged.",
-        "Summary of top friction patterns delivered to CS leadership."
+        "Key parts of the platform explored from the customer point of view.",
+        "A sample set of courses completed to understand the learning experience.",
+        "Dashboard, navigation, and friction points documented with concrete examples."
       ],
-      notes: "Completed an initial walkthrough of onboarding emails and support queue routing. Still waiting on one export from HubSpot to validate renewal-stage touchpoints."
+      notes: "The goal is not to complete every course immediately. It is to understand how the platform feels to a customer and where adoption could stall."
     },
-    "interview-accounts": {
-      title: "Interview 6–8 business accounts",
-      phase: "Listen & Map",
+    "meet-noah": {
+      title: "Meet 1:1 with Noah (current CSM)",
+      phase: "Listen & Learn",
+      status: "Not Started",
+      statusClass: "status-risk",
+      dependencies: "Needs time on Noah's calendar and enough account context in advance to make the conversation specific rather than generic.",
+      successCriteria: [
+        "Clear understanding of Noah's current book of business.",
+        "List of which accounts feel healthy versus fragile.",
+        "Documented takeaways on what he would change if he had more time."
+      ],
+      notes: "This is one of the first conversations I’d prioritize so I understand the current reality before forming opinions."
+    },
+    "meet-enterprise-csm": {
+      title: "Meet 1:1 with the incoming Enterprise CSM",
+      phase: "Listen & Learn",
+      status: "Not Started",
+      statusClass: "status-risk",
+      dependencies: "Depends on knowing how the role is expected to ramp and where account ownership will shift as the team grows.",
+      successCriteria: [
+        "Shared understanding of where responsibilities should split.",
+        "Initial plan for sharing learnings and avoiding overlap.",
+        "Agreement on how to hand off context as the team scales."
+      ],
+      notes: "I’d treat this as an early alignment step so customers feel continuity, not internal reshuffling."
+    },
+    "shadow-dia": {
+      title: "Shadow Dia (Sales Manager) on 3–5 new deal handoffs",
+      phase: "Listen & Learn",
+      status: "Not Started",
+      statusClass: "status-risk",
+      dependencies: "Requires access to a small set of fresh deals plus visibility into how expectations are framed during the sales process.",
+      successCriteria: [
+        "Three to five handoffs observed live or reviewed with detail.",
+        "Clear list of promises, assumptions, and onboarding risks from sales.",
+        "Notes captured on where CS needs more context at handoff."
+      ],
+      notes: "The goal is to understand what customers think they bought before I’m responsible for making the experience real."
+    },
+    "absorb-brand": {
+      title: "Absorb the brand: voice, positioning, and customer language",
+      phase: "Listen & Learn",
       status: "In Progress",
       statusClass: "status-watch",
-      dependencies: "Needs introductions to account admins from CS and sales, plus calendar access to line up interviews across healthy and at-risk segments.",
+      dependencies: "Needs access to customer-facing decks, sales language, onboarding copy, and the team's internal shorthand for AI readiness.",
       successCriteria: [
-        "Six or more interviews completed with notes stored in the shared drive.",
-        "Themes grouped by onboarding, adoption, reporting, and admin engagement.",
-        "Pattern summary delivered to the CS lead with recommended next actions."
+        "Brand voice patterns documented and reflected in my notes.",
+        "Core phrases and positioning language captured for customer use.",
+        "Customer communication starts sounding native to SmarterX."
       ],
-      notes: "Scheduled 3 interviews for week 2. Waiting on intro to Account 7 admin from sales before locking the final cohort."
+      notes: "This is less about memorizing copy and more about learning how SmarterX explains value in a way customers already trust."
     },
-    "shadow-handoffs": {
-      title: "Shadow sales handoffs and support queues",
-      phase: "Listen & Map",
-      status: "Not Started",
-      statusClass: "status-risk",
-      dependencies: "Requires observation time with both sales and support plus a small sample of recent won opportunities to follow into onboarding.",
-      successCriteria: [
-        "Three handoffs observed from closed-won through onboarding.",
-        "At least five examples of context loss captured with timestamps.",
-        "Recommendation list drafted for improving transfer quality."
-      ],
-      notes: "Queued for week 3 once sales can share a recent set of business accounts with full thread history."
-    },
-    "document-baseline": {
-      title: "Document the current baseline",
-      phase: "Listen & Map",
-      status: "Complete",
-      statusClass: "status-healthy",
-      dependencies: "Depends on reliable access to retention, license utilization, and course completion exports from the current reporting stack.",
-      successCriteria: [
-        "Baseline metrics defined and documented in one reference view.",
-        "Metric definitions aligned with leadership.",
-        "Current-state values saved for future 30/60/90-day comparison."
-      ],
-      notes: "Baseline scorecard is drafted with retention, time-to-value, and utilization. Final metric naming has already been aligned with leadership."
-    },
-    "journey-map": {
-      title: "Design the customer journey map",
-      phase: "Build & Systematize",
-      status: "Not Started",
-      statusClass: "status-risk",
-      dependencies: "Depends on finishing the discovery audit and validating which milestones should be system-triggered versus CSM-owned.",
-      successCriteria: [
-        "Journey map includes contract, onboarding, adoption, renewal, and expansion stages.",
-        "Ownership and success criteria defined at every stage.",
-        "Final map shared in a format the team can maintain."
-      ],
-      notes: "Waiting on final interview synthesis so the map reflects actual customer behavior rather than only internal assumptions."
-    },
-    "onboarding-playbook": {
-      title: "Build the onboarding playbook",
-      phase: "Build & Systematize",
-      status: "Not Started",
-      statusClass: "status-risk",
-      dependencies: "Requires agreement on core onboarding milestones and access to current communication templates and reporting checkpoints.",
-      successCriteria: [
-        "Standardized onboarding sequence documented for every new business account.",
-        "Templates drafted for kickoff, milestone nudges, and admin check-ins.",
-        "Playbook includes triggers, owners, and definition of done."
-      ],
-      notes: "Initial outline is ready, but template language will be finalized after the journey map and score inputs are confirmed."
-    },
-    "draft-health-model": {
-      title: "Draft the account health score framework",
-      phase: "Build & Systematize",
+    "sit-in-calls": {
+      title: "Sit in on customer calls (as many as possible)",
+      phase: "Listen & Learn",
       status: "In Progress",
       statusClass: "status-watch",
-      dependencies: "Requires access to HubSpot property capabilities and alignment on which signals are automated versus manual for the first version.",
+      dependencies: "Needs access to a broad mix of onboarding calls, check-ins, and routine customer conversations so I can learn the real cadence of the role.",
       successCriteria: [
-        "Signal list and weights approved by CS leadership.",
-        "Threshold logic defined for green, amber, and red states.",
-        "Version 1 property map drafted for HubSpot implementation."
+        "A wide sample of customer calls observed across onboarding and ongoing success.",
+        "Patterns documented around objections, confusion, and strong moments.",
+        "Personal baseline established before leading my own calls."
       ],
-      notes: "Weighting model is drafted with WAU, first logins, completions, and admin engagement. Need final confirmation on ticket sentiment as a scored signal."
+      notes: "I’d sit in on as many calls as possible early on so I can learn tone, pacing, and where customers get stuck before trying to improve anything."
     },
-    "feedback-loop": {
-      title: "Establish CS–to–Product feedback loop",
-      phase: "Build & Systematize",
+    "own-accounts": {
+      title: "Own my first 3–5 accounts independently",
+      phase: "Listen & Learn",
       status: "Not Started",
       statusClass: "status-risk",
-      dependencies: "Needs agreement with product on routing format, tagging conventions, and review cadence so feedback can be acted on consistently.",
+      dependencies: "Depends on getting enough context quickly so the accounts chosen are learnable but still real enough to build confidence early.",
       successCriteria: [
-        "Feedback channel defined with clear categories and owners.",
-        "Insights tied back to affected accounts and measurable trends.",
-        "Operating cadence established for review with product."
+        "Three to five accounts moved fully into my ownership.",
+        "Onboarding, follow-up, and risk handling managed independently.",
+        "Any gaps surfaced quickly enough to adjust my approach."
       ],
-      notes: "Product sync is tentatively scheduled for the next sprint planning block."
+      notes: "I’d want to move into a small portfolio early enough that the first month is not only observation. The point is to start learning through real ownership."
     },
-    "launch-score-v1": {
-      title: "Launch health score v1 in HubSpot",
-      phase: "Activate & Prove",
+    "run-training": {
+      title: "Work with Dia on where onboarding should be hands-on vs. automated",
+      phase: "Contribute & Build",
       status: "Not Started",
       statusClass: "status-risk",
-      dependencies: "Depends on property creation, workflow testing, and at least one clean pilot account cohort to validate score accuracy.",
+      dependencies: "Needs enough onboarding volume, a clear view into where customers struggle, and close collaboration with Dia to decide which motions should stay high-touch versus become more scalable.",
       successCriteria: [
-        "Health score visible at the company level inside HubSpot.",
-        "Accounts segmented into actionable tiers with saved views.",
-        "CS team can prioritize work using score-driven workflows."
+        "Clear recommendation on where accounts need hands-on onboarding.",
+        "Early candidates identified for testing automated onboarding.",
+        "Sticking points in my own customer book documented with examples."
       ],
-      notes: "Planned for the first post-pilot rollout once score validation is complete and manual input fields are trained."
+      notes: "This is less about delivering a training for the sake of it and more about learning where human onboarding matters most versus where we can begin testing scale."
     },
-    "warning-triggers": {
-      title: "Implement early warning triggers",
-      phase: "Activate & Prove",
-      status: "Not Started",
-      statusClass: "status-risk",
-      dependencies: "Needs accurate score thresholds plus workflow ownership for notifications, tasks, and escalation paths.",
-      successCriteria: [
-        "At-risk score drops generate tasks for the assigned CSM.",
-        "Critical declines escalate to CS leadership automatically.",
-        "Alert logic tested against at least three pilot scenarios."
-      ],
-      notes: "Rules are defined conceptually, but workflow alerts will not be activated until pilot accounts show stable score movement."
-    },
-    "qbr-expansion": {
-      title: "QBR framework and expansion motion",
-      phase: "Activate & Prove",
+    "identify-systems": {
+      title: "Begin identifying systems we can put into place",
+      phase: "Contribute & Build",
       status: "In Progress",
       statusClass: "status-watch",
-      dependencies: "Requires health score outputs and customer usage reporting so the QBR narrative can show actual adoption and ROI.",
+      dependencies: "Requires input from the Enterprise CSM, Noah, and Sales so the systems, automation, and AI tools we identify reflect how work actually flows across teams instead of solving only one perspective.",
       successCriteria: [
-        "QBR template aligns usage, learning progress, and renewal context.",
-        "Expansion signals clearly separated from risk signals.",
-        "At least one sample QBR walkthrough delivered internally."
+        "List of repeatable systems opportunities identified across onboarding and account management.",
+        "Cross-functional input gathered from CS and Sales.",
+        "Early view formed on what should become process, tooling, automation, or AI-assisted workflow."
       ],
-      notes: "Drafted the slide flow for an ROI-led QBR. Still waiting on the score model so the account summary section reflects the final signals."
+      notes: "I want to start spotting the systems that could outlast any one person and work with the team to shape where process, automation, and AI tools can actually help."
     },
-    "retro-roadmap": {
-      title: "90-day retrospective and CS roadmap",
-      phase: "Activate & Prove",
+    "draft-onboarding": {
+      title: "Draft the onboarding checklist and first-30-days template",
+      phase: "Contribute & Build",
+      status: "In Progress",
+      statusClass: "status-watch",
+      dependencies: "Depends on enough customer exposure to separate what is essential from what is just habit in the current process.",
+      successCriteria: [
+        "First draft of a repeatable onboarding checklist created.",
+        "Day-1 through Day-30 milestones clearly structured.",
+        "Draft shared for feedback rather than treated as final."
+      ],
+      notes: "This should be a pressure-tested working draft, not a polished artifact too early."
+    },
+    "propose-health-score": {
+      title: "Begin thinking about health score inputs from lived CSM experience",
+      phase: "Contribute & Build",
+      status: "In Progress",
+      statusClass: "status-watch",
+      dependencies: "Needs enough signal from product usage, course progress, and admin behavior to start forming a grounded point of view instead of jumping to a theoretical score too early.",
+      successCriteria: [
+        "Initial signal ideas shaped by real CSM observation, not just theory.",
+        "Reasoning clear for why each variable matters based on customer behavior.",
+        "Conversation framed as early thinking, not ownership of the final build."
+      ],
+      notes: "I’m not trying to create the health score here. I want to begin thinking about what should eventually inform it based on what I’m learning firsthand as a CSM."
+    },
+    "refine-playbook": {
+      title: "Refine and socialize the onboarding playbook",
+      phase: "Prove & Systematize",
       status: "Not Started",
       statusClass: "status-risk",
-      dependencies: "Depends on completed pilots, measured outcomes, and a leadership-ready summary of wins, gaps, and next-quarter recommendations.",
+      dependencies: "Depends on real-world testing from Phase 2 and candid collaboration with Noah and the Enterprise CSM so the playbook reflects how the team actually wants to work.",
       successCriteria: [
-        "Retrospective captures what changed and what remains manual.",
-        "Leadership deck includes metrics, examples, and next-quarter roadmap.",
-        "Months 4–12 priorities tied directly to the 90-day findings."
+        "Feedback incorporated from the teammates who would actually use it.",
+        "Playbook documented clearly enough to work across the team, not just through me.",
+        "Known gaps called out instead of hidden."
       ],
-      notes: "This becomes the closeout artifact once the HubSpot build and pilot reporting are stable."
+      notes: "The goal is not for this to become my personal process. It should become a shared way of working that Noah, the Enterprise CSM, and I all believe in."
+    },
+    "begin-hubspot-pilot": {
+      title: "Begin health score implementation in HubSpot",
+      phase: "Prove & Systematize",
+      status: "Not Started",
+      statusClass: "status-risk",
+      dependencies: "Requires agreement on early score signals and enough HubSpot structure to stand up a small pilot collaboratively without overbuilding too early.",
+      successCriteria: [
+        "Pilot score inputs tested in HubSpot with the broader CS team.",
+        "Logic reviewed across a small 3–5 account sample.",
+        "Pilot used to learn, not to imply that I own the full rollout."
+      ],
+      notes: "I may not own the health score process end to end, but I want to contribute to the early pilot and bring what I’m seeing from real customer work into the discussion."
+    },
+    "run-qbr": {
+      title: "Run first QBR with a key account",
+      phase: "Prove & Systematize",
+      status: "Not Started",
+      statusClass: "status-risk",
+      dependencies: "Needs an account with enough adoption data to make the review meaningful and a format strong enough to test in front of a customer.",
+      successCriteria: [
+        "One QBR run using real adoption data and outcomes.",
+        "Clear feedback captured on what resonated or fell flat.",
+        "Format refined for future repeatability."
+      ],
+      notes: "This is where the dashboard thinking becomes a customer-facing conversation instead of an internal concept."
+    },
+    "retro-manager": {
+      title: "90-day retrospective with Manager",
+      phase: "Prove & Systematize",
+      status: "Not Started",
+      statusClass: "status-risk",
+      dependencies: "Depends on enough actual learning, ownership, and build progress to show what changed in the first 90 days.",
+      successCriteria: [
+        "Retrospective covers what I learned, built, and improved.",
+        "Months 4–12 roadmap is proposed, not left vague.",
+        "Conversation is forward-looking rather than purely recap."
+      ],
+      notes: "I’d want to walk into this conversation with the roadmap already thought through, not improvise it in the room."
     }
   };
 
@@ -3021,12 +2994,6 @@
     });
   }
 
-  function updateEmptyState() {
-    const hiddenCount = document.querySelectorAll(".card.hidden").length;
-    const totalCount = document.querySelectorAll(".card").length;
-    document.getElementById("empty-state").classList.toggle("visible", hiddenCount === totalCount);
-  }
-
   function rowHealthState(row) {
     if (row.classList.contains("tier-healthy")) return "healthy";
     if (row.classList.contains("tier-watch")) return "watch";
@@ -3047,19 +3014,6 @@
       section.classList.toggle("hidden-row", !hasVisible);
     });
   }
-
-  document.querySelectorAll(".filter-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".filter-btn").forEach(item => item.classList.remove("active"));
-      btn.classList.add("active");
-      const filter = btn.dataset.filter;
-      document.querySelectorAll(".card").forEach(card => {
-        card.classList.toggle("hidden", filter !== "all" && card.dataset.tag !== filter);
-      });
-      updateCounts();
-      updateEmptyState();
-    });
-  });
 
   document.querySelectorAll(".summary-card[data-health-filter]").forEach(card => {
     card.addEventListener("click", () => applyHealthFilter(card.dataset.healthFilter));
@@ -3125,7 +3079,6 @@
   });
 
   updateCounts();
-  updateEmptyState();
   applyHealthFilter("all");
 </script>
 </body>
