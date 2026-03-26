@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paul Dashboard — Brittany Passavanti</title>
+<title>Brittany Passavanti — SmarterX CS Demo</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -57,10 +57,10 @@
     align-items: center;
     gap: 28px;
     padding: 16px 40px;
-    background: rgba(15, 23, 47, 0.96);
-    color: #d8e2f0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+    background: linear-gradient(180deg, rgba(69, 88, 113, 0.96) 0%, rgba(84, 105, 129, 0.96) 100%);
+    color: #ecf3fb;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.14);
     backdrop-filter: blur(10px);
   }
 
@@ -68,6 +68,11 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    padding: 8px 14px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
   }
 
   .brand-logo {
@@ -76,7 +81,7 @@
   }
 
   .nav-logo .brand-logo {
-    height: 42px;
+    height: 38px;
   }
 
   .nav-tabs {
@@ -86,7 +91,7 @@
     gap: 10px;
     padding: 4px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.12);
   }
 
   .nav-indicator {
@@ -103,7 +108,7 @@
     z-index: 1;
     border: 0;
     background: transparent;
-    color: #9fb0c6;
+    color: #d7e3f1;
     font-size: 13px;
     font-weight: 700;
     padding: 12px 18px;
@@ -126,7 +131,7 @@
   .nav-right {
     margin-left: auto;
     font-size: 12px;
-    color: #a7b6ca;
+    color: #eef4fb;
     white-space: nowrap;
   }
 
@@ -550,6 +555,12 @@
     color: var(--muted);
   }
 
+  .page-submeta {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #7c8da1;
+  }
+
   .summary-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -558,12 +569,24 @@
   }
 
   .summary-card {
+    appearance: none;
     background: var(--surface);
     border: 1px solid var(--border);
     border-top: 3px solid transparent;
     border-radius: 18px;
     padding: 20px;
     box-shadow: var(--shadow-sm);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+  }
+
+  .summary-card:hover,
+  .summary-card:focus-visible,
+  .summary-card.active {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.10);
+    outline: none;
   }
 
   .summary-card.s-blue { border-top-color: var(--teal); }
@@ -668,7 +691,87 @@
     color: #b91c1c;
   }
 
+  .attention-actions {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .ghost-btn,
+  .workflow-trigger,
+  .workflow-option,
+  .action-chip,
+  .signal-toggle,
+  .sprint-node {
+    font: inherit;
+  }
+
+  .ghost-btn,
+  .workflow-trigger,
+  .action-chip,
+  .action-btn {
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    padding: 7px 12px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .ghost-btn:hover,
+  .workflow-trigger:hover,
+  .action-chip:hover,
+  .action-btn:hover {
+    border-color: var(--teal);
+    color: var(--teal-dark);
+  }
+
+  .workflow-wrap {
+    position: relative;
+  }
+
+  .workflow-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 240px;
+    padding: 8px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.16);
+    display: none;
+    z-index: 12;
+  }
+
+  .workflow-wrap.open .workflow-menu {
+    display: grid;
+    gap: 6px;
+  }
+
+  .workflow-option {
+    width: 100%;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 12px;
+    text-align: left;
+    background: #f8fafc;
+    color: #334155;
+    cursor: pointer;
+  }
+
+  .workflow-option:hover {
+    background: #eef6fb;
+    color: var(--teal-dark);
+  }
+
   .rep-section { margin-bottom: 30px; }
+
+  .rep-section.hidden-row { display: none; }
 
   .rep-label {
     display: flex;
@@ -739,6 +842,10 @@
   .account-row:hover td {
     border-top-color: rgba(14, 143, 199, 0.28);
     border-bottom-color: rgba(14, 143, 199, 0.28);
+  }
+
+  .account-row.hidden-row {
+    display: none;
   }
 
   .score-wrap {
@@ -837,6 +944,12 @@
     gap: 22px;
   }
 
+  .build-top-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.9fr);
+    gap: 20px;
+  }
+
   .info-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -901,6 +1014,448 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+  }
+
+  .architecture-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) 36px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+  }
+
+  .arch-column {
+    padding: 18px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #fbfdff 0%, #f6faff 100%);
+    border: 1px solid var(--border);
+  }
+
+  .arch-title {
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .arch-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .arch-node {
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .arch-node span {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .arch-node-green { border-left: 4px solid var(--green); }
+  .arch-node-amber { border-left: 4px solid var(--amber); }
+  .arch-node-red { border-left: 4px solid var(--red); }
+
+  .flow-arrow {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 900;
+    color: #7ba2be;
+  }
+
+  .signal-toggle-stack {
+    display: grid;
+    gap: 12px;
+  }
+
+  .signal-toggle-card {
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: #fbfdff;
+  }
+
+  .signal-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 18px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .signal-toggle span:last-child {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .signal-toggle-content {
+    display: none;
+    padding: 0 18px 18px;
+  }
+
+  .signal-toggle-card.open .signal-toggle-content {
+    display: grid;
+    gap: 10px;
+  }
+
+  .signal-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1.1fr) 70px minmax(120px, 1fr) minmax(200px, 1.2fr);
+    gap: 14px;
+    align-items: start;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: #334155;
+  }
+
+  .weight-viz-card {
+    padding: 18px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #f8fbfe 0%, #ffffff 100%);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .weight-viz {
+    display: grid;
+    gap: 10px;
+  }
+
+  .weight-bar {
+    display: grid;
+    grid-template-columns: 110px 1fr 42px;
+    gap: 10px;
+    align-items: center;
+    font-size: 12px;
+    color: #334155;
+  }
+
+  .weight-track {
+    height: 10px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    overflow: hidden;
+  }
+
+  .weight-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--teal), #38bdf8);
+  }
+
+  .sprint-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .sprint-node {
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 16px;
+    background: #f8fbfe;
+    text-align: left;
+    cursor: pointer;
+    color: #334155;
+  }
+
+  .sprint-node strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+
+  .sprint-node span {
+    display: block;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .sprint-node.active {
+    border-color: rgba(14, 143, 199, 0.34);
+    background: #eef8fd;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sprint-detail-panel {
+    display: none;
+    padding: 18px;
+    border-radius: 18px;
+    background: #fbfdff;
+    border: 1px solid var(--border);
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .sprint-detail-panel.active {
+    display: grid;
+    gap: 8px;
+  }
+
+  .workflow-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .workflow-logic-card {
+    position: relative;
+    padding-top: 42px;
+  }
+
+  .workflow-risk { border-left: 4px solid var(--red); }
+  .workflow-critical { border-left: 4px solid #991b1b; }
+  .workflow-growth { border-left: 4px solid var(--green); }
+
+  .workflow-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #eef6fb;
+    color: var(--teal-dark);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .workflow-steps {
+    display: grid;
+    gap: 10px;
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .overview-grid,
+  .signal-grid,
+  .automation-grid,
+  .alert-feed {
+    display: grid;
+    gap: 12px;
+  }
+
+  .overview-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .overview-stat {
+    padding: 14px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .overview-stat-label {
+    margin-bottom: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .overview-stat-value {
+    font-size: 16px;
+    font-weight: 850;
+  }
+
+  .signal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .signal-scorecard {
+    padding: 14px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .signal-scorecard-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .signal-name {
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .signal-line {
+    height: 8px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .signal-line-fill {
+    height: 100%;
+    border-radius: 999px;
+  }
+
+  .signal-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .switch-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .workflow-row {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.9fr) minmax(180px, 1.1fr) 78px;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .workflow-row strong,
+  .workflow-row span {
+    font-size: 12px;
+    line-height: 1.55;
+    color: #334155;
+  }
+
+  .workflow-row span {
+    color: var(--muted);
+  }
+
+  .switch {
+    position: relative;
+    display: inline-flex;
+    width: 52px;
+    height: 30px;
+  }
+
+  .toggle-input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+  }
+
+  .toggle-slider {
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    background: #d6dee8;
+    transition: background 0.16s ease;
+  }
+
+  .toggle-slider::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.16);
+    transition: transform 0.16s ease;
+  }
+
+  .toggle-input:checked + .toggle-slider {
+    background: #8ed3ef;
+  }
+
+  .toggle-input:checked + .toggle-slider::after {
+    transform: translateX(22px);
+  }
+
+  .modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .alert-card {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .alert-card strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+
+  .alert-card p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #334155;
+  }
+
+  .alert-card.red { border-left: 4px solid var(--red); }
+  .alert-card.amber { border-left: 4px solid var(--amber); }
+  .alert-card.green { border-left: 4px solid var(--green); }
+
+  .next-action-card {
+    padding: 18px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #eff8fd 0%, #ffffff 100%);
+    border: 1px solid #cbe7f5;
+  }
+
+  .next-action-card p {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #334155;
+  }
+
+  .action-btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 14px;
   }
 
   .timeline {
@@ -1210,6 +1765,12 @@
   @media (max-width: 1160px) {
     .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .architecture-flow,
+    .build-top-grid,
+    .workflow-card-grid,
+    .overview-grid,
+    .signal-grid { grid-template-columns: 1fr; }
+    .flow-arrow { display: none; }
   }
 
   @media (max-width: 920px) {
@@ -1236,7 +1797,7 @@
     }
 
     .nav-logo .brand-logo {
-      height: 36px;
+      height: 32px;
     }
 
     .toolbar-hint {
@@ -1249,6 +1810,9 @@
     .detail-row,
     .renewal-grid { grid-template-columns: 1fr; }
     .breakdown-row { grid-template-columns: 1fr; }
+    .signal-row,
+    .workflow-row,
+    .sprint-timeline { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 640px) {
@@ -1282,7 +1846,7 @@
       <div class="kanban-header" id="kanban-header">
         <div class="header-inner">
           <div>
-            <div class="header-title">First 90 Days<br><span>for Paul</span></div>
+            <div class="header-title">First 90 Days<br><span>for Brittany</span></div>
           </div>
           <div class="header-meta">
             <div class="meta-item"><div class="meta-num"><span>3</span></div><div class="meta-label">Phases</div></div>
@@ -1439,51 +2003,88 @@
         <div class="page-header">
           <div>
             <div class="page-title">Account <span>Health</span></div>
-            <div class="page-subtitle">Scores reflect adoption activity, engagement, and renewal risk · Updated weekly</div>
+            <div class="page-subtitle">Scores reflect adoption activity, engagement, and renewal risk</div>
+            <div class="page-submeta">Last updated: March 26, 2026</div>
           </div>
         </div>
 
         <div class="summary-grid">
-          <div class="summary-card s-blue">
+          <button class="summary-card s-blue active" data-health-filter="all">
             <div class="summary-label">Total Accounts</div>
             <div class="summary-num">18</div>
             <div class="summary-sub">Across 2 reps</div>
-          </div>
-          <div class="summary-card s-good">
+          </button>
+          <button class="summary-card s-good" data-health-filter="healthy">
             <div class="summary-label">Healthy</div>
             <div class="summary-num">11</div>
             <div class="summary-sub">Score 70+</div>
-          </div>
-          <div class="summary-card s-warn">
+          </button>
+          <button class="summary-card s-warn" data-health-filter="watch">
             <div class="summary-label">Needs Attention</div>
             <div class="summary-num">4</div>
             <div class="summary-sub">Score 45–69</div>
-          </div>
-          <div class="summary-card s-alert">
+          </button>
+          <button class="summary-card s-alert" data-health-filter="risk">
             <div class="summary-label">Action Recommended</div>
             <div class="summary-num">3</div>
             <div class="summary-sub">Score below 45</div>
-          </div>
+          </button>
         </div>
 
         <div class="attention-section">
           <div class="attention-title"><span class="attention-dot"></span>Action Recommended</div>
           <div class="attention-items">
-            <button class="attention-item" data-account-id="account-3">
+            <div class="attention-item" tabindex="0" data-account-id="account-3">
               <div class="attention-account">Account 3</div>
               <div class="attention-rep">Rep: Brittany</div>
               <div class="attention-reason">No logins in 21 days. 4 of 30 licenses activated. Admin unresponsive since onboarding.</div>
-            </button>
-            <button class="attention-item" data-account-id="account-11">
+              <div class="attention-actions">
+                <button class="ghost-btn" data-account-id="account-3">Open Account</button>
+                <div class="workflow-wrap">
+                  <button class="workflow-trigger" type="button">Add to Workflow</button>
+                  <div class="workflow-menu">
+                    <button class="workflow-option" type="button">Auto follow-up when score drops below 40</button>
+                    <button class="workflow-option" type="button">Schedule check-in call</button>
+                    <button class="workflow-option" type="button">Enroll in re-engagement sequence</button>
+                    <button class="workflow-option" type="button">Flag for CS lead review</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="attention-item" tabindex="0" data-account-id="account-11">
               <div class="attention-account">Account 11</div>
               <div class="attention-rep">Rep: Noah</div>
               <div class="attention-reason">0 certificates completed. Usage down 60% over 30 days. Renewal in 6 weeks.</div>
-            </button>
-            <button class="attention-item" data-account-id="account-15">
+              <div class="attention-actions">
+                <button class="ghost-btn" data-account-id="account-11">Open Account</button>
+                <div class="workflow-wrap">
+                  <button class="workflow-trigger" type="button">Add to Workflow</button>
+                  <div class="workflow-menu">
+                    <button class="workflow-option" type="button">Auto follow-up when score drops below 40</button>
+                    <button class="workflow-option" type="button">Schedule check-in call</button>
+                    <button class="workflow-option" type="button">Enroll in re-engagement sequence</button>
+                    <button class="workflow-option" type="button">Flag for CS lead review</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="attention-item" tabindex="0" data-account-id="account-15">
               <div class="attention-account">Account 15</div>
               <div class="attention-rep">Rep: Noah</div>
               <div class="attention-reason">Exec sponsor changed. New contact has not logged in. Expansion conversation stalled.</div>
-            </button>
+              <div class="attention-actions">
+                <button class="ghost-btn" data-account-id="account-15">Open Account</button>
+                <div class="workflow-wrap">
+                  <button class="workflow-trigger" type="button">Add to Workflow</button>
+                  <div class="workflow-menu">
+                    <button class="workflow-option" type="button">Auto follow-up when score drops below 40</button>
+                    <button class="workflow-option" type="button">Schedule check-in call</button>
+                    <button class="workflow-option" type="button">Enroll in re-engagement sequence</button>
+                    <button class="workflow-option" type="button">Flag for CS lead review</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1670,122 +2271,156 @@
 
         <div class="build-grid">
           <div class="info-card">
-            <h3>Health Score Model — HubSpot Custom Properties</h3>
-            <div class="health-model-table-wrap">
-              <table class="health-model-table">
-                <thead>
-                  <tr>
-                    <th>Signal</th>
-                    <th>HubSpot Property Type</th>
-                    <th>Weight</th>
-                    <th>Source</th>
-                    <th>Threshold Logic</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Weekly Active Users (WAU)</strong></td>
-                    <td>Calculated · Number</td>
-                    <td class="weight-cell">25%</td>
-                    <td>Product usage API → HubSpot workflow</td>
-                    <td><div class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Green: &gt;60% of licenses</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Amber: 30–60%</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Red: &lt;30%</span></div></td>
-                  </tr>
-                  <tr>
-                    <td><strong>First Logins (new user activation)</strong></td>
-                    <td>Calculated · Number</td>
-                    <td class="weight-cell">15%</td>
-                    <td>Product usage API → HubSpot workflow</td>
-                    <td><div class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Green: &gt;80% within 14 days</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Amber: 50–80%</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Red: &lt;50%</span></div></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Course Completions</strong></td>
-                    <td>Calculated · Number</td>
-                    <td class="weight-cell">20%</td>
-                    <td>AI Academy LMS data → HubSpot workflow</td>
-                    <td><div class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Green: &gt;3 per user/quarter</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Amber: 1–3</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Red: 0</span></div></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Certificate Completion Rate</strong></td>
-                    <td>Calculated · Number</td>
-                    <td class="weight-cell">15%</td>
-                    <td>AI Academy LMS data → HubSpot workflow</td>
-                    <td><div class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Green: &gt;50% of enrolled</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Amber: 25–50%</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Red: &lt;25%</span></div></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Admin Engagement</strong></td>
-                    <td>Dropdown select</td>
-                    <td class="weight-cell">10%</td>
-                    <td>CSM manual input + last login date</td>
-                    <td><div class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Green: Monthly login + responsive</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Amber: 60+ days</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Red: 90+ days or unresponsive</span></div></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Support Ticket Sentiment</strong></td>
-                    <td>Dropdown select</td>
-                    <td class="weight-cell">10%</td>
-                    <td>HubSpot Service Hub → workflow</td>
-                    <td><div class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Green: Resolved, positive CSAT</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Amber: Open/neutral</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Red: Escalated or negative</span></div></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Exec Sponsor Status</strong></td>
-                    <td>Dropdown select</td>
-                    <td class="weight-cell">5%</td>
-                    <td>CSM manual input</td>
-                    <td><div class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Green: Identified + engaged</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Amber: Identified, not engaged</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Red: Unknown/departed</span></div></td>
-                  </tr>
-                </tbody>
-              </table>
+            <h3>System Architecture</h3>
+            <div class="architecture-flow">
+              <div class="arch-column">
+                <div class="arch-title">Data Sources</div>
+                <div class="arch-list">
+                  <div class="arch-node">AI Academy LMS <span>course completions, certificates, logins</span></div>
+                  <div class="arch-node">Product Usage API <span>WAU, first logins, license activation</span></div>
+                  <div class="arch-node">HubSpot Service Hub <span>support ticket sentiment</span></div>
+                  <div class="arch-node">CSM Manual Input <span>admin engagement, exec sponsor</span></div>
+                </div>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="arch-column">
+                <div class="arch-title">HubSpot Layer</div>
+                <div class="arch-list">
+                  <div class="arch-node">Custom Company Properties</div>
+                  <div class="arch-node">Calculated Health Score Property</div>
+                  <div class="arch-node">Active Lists <span>Healthy / At-Risk / Action</span></div>
+                  <div class="arch-node">HubSpot Reporting Dashboard</div>
+                </div>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="arch-column">
+                <div class="arch-title">Automation Outputs</div>
+                <div class="arch-list">
+                  <div class="arch-node arch-node-red">CSM Task + Slack Alert</div>
+                  <div class="arch-node arch-node-amber">Re-engagement Sequence</div>
+                  <div class="arch-node arch-node-red">Escalation to CS Lead</div>
+                  <div class="arch-node arch-node-green">Expansion Playbook Trigger</div>
+                  <div class="arch-node">Auto-populated QBR Template</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="build-top-grid">
+              <div>
+                <h3>Health Score Model — HubSpot Custom Properties</h3>
+                <div class="signal-toggle-stack">
+                  <div class="signal-toggle-card open">
+                    <button class="signal-toggle" type="button" data-signal-group="automated">
+                      <span>Automated Signals</span>
+                      <span>5 properties</span>
+                    </button>
+                    <div class="signal-toggle-content">
+                      <div class="signal-row"><strong>Weekly Active Users (WAU)</strong><span>25%</span><span>Product usage API</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>&gt;60%</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>30–60%</span><span class="signal-pill signal-red"><span class="signal-dot"></span>&lt;30%</span></span></div>
+                      <div class="signal-row"><strong>First Logins</strong><span>15%</span><span>Product usage API</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>&gt;80%</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>50–80%</span><span class="signal-pill signal-red"><span class="signal-dot"></span>&lt;50%</span></span></div>
+                      <div class="signal-row"><strong>Course Completions</strong><span>20%</span><span>AI Academy LMS</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>&gt;3/user</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>1–3</span><span class="signal-pill signal-red"><span class="signal-dot"></span>0</span></span></div>
+                      <div class="signal-row"><strong>Certificate Completion Rate</strong><span>15%</span><span>AI Academy LMS</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>&gt;50%</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>25–50%</span><span class="signal-pill signal-red"><span class="signal-dot"></span>&lt;25%</span></span></div>
+                      <div class="signal-row"><strong>Support Ticket Sentiment</strong><span>10%</span><span>Service Hub</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Positive</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Neutral</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Escalated</span></span></div>
+                    </div>
+                  </div>
+                  <div class="signal-toggle-card">
+                    <button class="signal-toggle" type="button" data-signal-group="managed">
+                      <span>CSM-Managed Signals</span>
+                      <span>2 properties</span>
+                    </button>
+                    <div class="signal-toggle-content">
+                      <div class="signal-row"><strong>Admin Engagement</strong><span>10%</span><span>CSM manual input + login date</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Monthly + responsive</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>60+ days</span><span class="signal-pill signal-red"><span class="signal-dot"></span>90+ days</span></span></div>
+                      <div class="signal-row"><strong>Exec Sponsor Status</strong><span>5%</span><span>CSM manual input</span><span class="threshold-stack"><span class="signal-pill signal-green"><span class="signal-dot"></span>Engaged</span><span class="signal-pill signal-amber"><span class="signal-dot"></span>Known, inactive</span><span class="signal-pill signal-red"><span class="signal-dot"></span>Unknown</span></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="weight-viz-card">
+                <div class="detail-title">Weight Distribution</div>
+                <div class="weight-viz">
+                  <div class="weight-bar"><span>WAU</span><div class="weight-track"><div class="weight-fill" style="width:100%"></div></div><strong>25%</strong></div>
+                  <div class="weight-bar"><span>Course Completions</span><div class="weight-track"><div class="weight-fill" style="width:80%"></div></div><strong>20%</strong></div>
+                  <div class="weight-bar"><span>First Logins</span><div class="weight-track"><div class="weight-fill" style="width:60%"></div></div><strong>15%</strong></div>
+                  <div class="weight-bar"><span>Certificate Rate</span><div class="weight-track"><div class="weight-fill" style="width:60%"></div></div><strong>15%</strong></div>
+                  <div class="weight-bar"><span>Admin Engagement</span><div class="weight-track"><div class="weight-fill" style="width:40%"></div></div><strong>10%</strong></div>
+                  <div class="weight-bar"><span>Ticket Sentiment</span><div class="weight-track"><div class="weight-fill" style="width:40%"></div></div><strong>10%</strong></div>
+                  <div class="weight-bar"><span>Exec Sponsor</span><div class="weight-track"><div class="weight-fill" style="width:20%"></div></div><strong>5%</strong></div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="info-card">
             <h3>Build Sequence — 4 Sprints</h3>
-            <div class="timeline">
-              <div class="timeline-step">
-                <div class="timeline-label">Sprint 1 · Week 1–2</div>
-                <div class="timeline-title">Foundation</div>
-                <div class="timeline-list">
-                  <div>Create all custom contact and company properties in HubSpot.</div>
-                  <div>Define property groups: "CS Health Score" at company level.</div>
-                  <div>Set up calculated properties for composite score (weighted sum).</div>
-                  <div>Map which data flows automatically vs. CSM manual input.</div>
-                </div>
+            <div class="sprint-timeline">
+              <button class="sprint-node active" type="button" data-sprint="1"><strong>Sprint 1</strong><span>Foundation · Wks 1–2</span></button>
+              <button class="sprint-node" type="button" data-sprint="2"><strong>Sprint 2</strong><span>Data Pipelines · Wks 3–4</span></button>
+              <button class="sprint-node" type="button" data-sprint="3"><strong>Sprint 3</strong><span>Scoring & Segmentation · Wks 5–6</span></button>
+              <button class="sprint-node" type="button" data-sprint="4"><strong>Sprint 4</strong><span>Automation & Alerts · Wks 7–8</span></button>
+            </div>
+            <div class="sprint-detail-panel active" data-sprint-panel="1">
+              <div>Create all custom contact and company properties in HubSpot.</div>
+              <div>Define property groups: "CS Health Score" at company level.</div>
+              <div>Set up calculated properties for composite score (weighted sum).</div>
+              <div>Map which data flows automatically vs. CSM manual input.</div>
+            </div>
+            <div class="sprint-detail-panel" data-sprint-panel="2">
+              <div>Build HubSpot workflows to ingest product usage data (WAU, first logins).</div>
+              <div>Connect AI Academy LMS data feed → HubSpot (course + cert completions).</div>
+              <div>Set enrollment triggers for new accounts.</div>
+              <div>Test with 3 pilot accounts.</div>
+            </div>
+            <div class="sprint-detail-panel" data-sprint-panel="3">
+              <div>Activate calculated health score property.</div>
+              <div>Build 3 HubSpot active lists: Healthy (70+), Needs Attention (45–69), Action Recommended (&lt;45).</div>
+              <div>Create saved views in CRM for each segment.</div>
+              <div>Build dashboard in HubSpot Reporting for leadership visibility.</div>
+            </div>
+            <div class="sprint-detail-panel" data-sprint-panel="4">
+              <div>Build workflow: score drops below 45 → auto-task to assigned CSM + Slack notification.</div>
+              <div>Build workflow: score drops below 30 → escalation to CS lead.</div>
+              <div>Build workflow: healthy account + renewal in 60 days → trigger expansion playbook.</div>
+              <div>QBR template auto-populated from health score properties.</div>
+            </div>
+          </div>
+
+          <div class="workflow-card-grid">
+            <div class="info-card workflow-logic-card workflow-risk">
+              <div class="workflow-badge">Active Workflow</div>
+              <h3>At-Risk Alert</h3>
+              <div class="workflow-steps">
+                <div><strong>Trigger:</strong> Health score drops below 45</div>
+                <div>Enroll in "At-Risk" HubSpot Active List</div>
+                <div>Create task for assigned CSM (due: 24hrs)</div>
+                <div>Send internal Slack notification to CS lead</div>
               </div>
-              <div class="timeline-step">
-                <div class="timeline-label">Sprint 2 · Week 3–4</div>
-                <div class="timeline-title">Data Pipelines</div>
-                <div class="timeline-list">
-                  <div>Build HubSpot workflows to ingest product usage data (WAU, first logins).</div>
-                  <div>Connect AI Academy LMS data feed → HubSpot (course + cert completions).</div>
-                  <div>Set enrollment triggers for new accounts.</div>
-                  <div>Test with 3 pilot accounts.</div>
-                </div>
+            </div>
+            <div class="info-card workflow-logic-card workflow-critical">
+              <div class="workflow-badge">Active Workflow</div>
+              <h3>Critical Escalation</h3>
+              <div class="workflow-steps">
+                <div><strong>Trigger:</strong> Health score drops below 30</div>
+                <div>Escalate to CS Manager (auto-assigned task)</div>
+                <div>Pause any active marketing sequences</div>
+                <div>Flag renewal record in HubSpot deals pipeline</div>
               </div>
-              <div class="timeline-step">
-                <div class="timeline-label">Sprint 3 · Week 5–6</div>
-                <div class="timeline-title">Scoring &amp; Segmentation</div>
-                <div class="timeline-list">
-                  <div>Activate calculated health score property.</div>
-                  <div>Build 3 HubSpot active lists: Healthy (70+), Needs Attention (45–69), Action Recommended (&lt;45).</div>
-                  <div>Create saved views in CRM for each segment.</div>
-                  <div>Build dashboard in HubSpot Reporting for leadership visibility.</div>
-                </div>
-              </div>
-              <div class="timeline-step">
-                <div class="timeline-label">Sprint 4 · Week 7–8</div>
-                <div class="timeline-title">Automation &amp; Alerts</div>
-                <div class="timeline-list">
-                  <div>Build workflow: score drops below 45 → auto-task to assigned CSM + Slack notification.</div>
-                  <div>Build workflow: score drops below 30 → escalation to CS lead.</div>
-                  <div>Build workflow: healthy account + renewal in 60 days → trigger expansion playbook.</div>
-                  <div>QBR template auto-populated from health score properties.</div>
-                </div>
+            </div>
+            <div class="info-card workflow-logic-card workflow-growth">
+              <div class="workflow-badge">Active Workflow</div>
+              <h3>Expansion Signal</h3>
+              <div class="workflow-steps">
+                <div><strong>Trigger:</strong> Score 70+ and renewal within 60 days</div>
+                <div>Enroll in Expansion Playbook sequence</div>
+                <div>Generate QBR template (auto-populated)</div>
+                <div>Create "Expansion Opportunity" deal in pipeline</div>
               </div>
             </div>
           </div>
 
           <div class="info-card callout-card">
             <h3>Why This Matters — From the CS Blueprint</h3>
-            <div class="callout-text">This build directly maps to the AI for Customer Success Blueprint's core framework: moving from reactive to proactive CS. The health score shifts the team from scheduled check-ins to signal-driven engagement, with AI monitoring behavior and surfacing warning signs before churn becomes inevitable. It also sets up the "natural language analytics" layer because leadership can query account health conversationally once the underlying data is structured in HubSpot.</div>
+            <div class="callout-text">This build directly maps to the AI for Customer Success Blueprint's core framework: moving from reactive to proactive CS. The health score shifts the team from scheduled check-ins to signal-driven engagement, with AI monitoring behavior and surfacing warning signs before churn becomes inevitable. It also sets up the "natural language analytics" layer because leadership can query account health conversationally once the underlying data is structured in HubSpot. <em>The goal isn't a dashboard. It's a system that tells you which 3 accounts need your attention today — and has already started the process of reaching them.</em></div>
           </div>
         </div>
       </div>
@@ -1957,7 +2592,14 @@
     }
   };
 
-  const baseSignals = ["WAU", "First Logins", "Course Completions", "Cert Rate", "Admin Engagement", "Ticket Sentiment", "Exec Sponsor"];
+  const baseSignals = ["Weekly Active Users", "First Logins", "Course Completions", "Certificate Rate", "Admin Engagement", "Support Ticket Sentiment", "Exec Sponsor Status"];
+  const signalMax = [25, 15, 20, 15, 10, 10, 5];
+  const workflowOptions = [
+    "Auto follow-up when score drops below 40",
+    "Schedule check-in call",
+    "Enroll in re-engagement sequence",
+    "Flag for CS lead review"
+  ];
 
   const accountProfiles = {
     "account-1": { name: "Account 1", score: 88, status: "Healthy", rep: "Brittany", renewalDate: "September 18, 2026", contractValue: "$96,000", expansionFlag: "Yes", expansionNote: "Leadership asked for additional manager seats if adoption holds through summer.", activities: [["Mar 18", "Admin logged in and assigned 4 new learners."], ["Mar 12", "Quarterly review completed with VP Ops."], ["Mar 8", "Support ticket #4421 resolved with positive CSAT."], ["Feb 28", "Certificate completion campaign launched to sales team."]], actions: ["Prepare an expansion-ready usage summary for the next business review.", "Highlight completion momentum by department in the next customer update.", "Keep exec sponsor warm with a short ROI note before renewal prep."], breakdown: [24, 13, 18, 13, 8, 8, 4] },
@@ -1990,6 +2632,74 @@
     if (score >= 70) return "healthy";
     if (score >= 45) return "watch";
     return "risk";
+  }
+
+  function signalState(value, max) {
+    const ratio = value / max;
+    if (ratio >= 0.7) return "signal-green";
+    if (ratio >= 0.4) return "signal-amber";
+    return "signal-red";
+  }
+
+  function signalColor(value, max) {
+    const ratio = value / max;
+    if (ratio >= 0.7) return "#22c55e";
+    if (ratio >= 0.4) return "#f59e0b";
+    return "#ef4444";
+  }
+
+  function workflowMenuMarkup() {
+    return `
+      <div class="workflow-wrap">
+        <button class="workflow-trigger" type="button">+ Add to Workflow</button>
+        <div class="workflow-menu">
+          ${workflowOptions.map(option => `<button class="workflow-option" type="button">${option}</button>`).join("")}
+        </div>
+      </div>
+    `;
+  }
+
+  function daysUntilRenewal(dateString) {
+    const today = new Date("2026-03-26T00:00:00");
+    const renewal = new Date(dateString);
+    return Math.ceil((renewal - today) / 86400000);
+  }
+
+  function renderAlertFeed(profile) {
+    const riskCopy = profile.score < 45
+      ? "Usage dropped 40% this week → Suggested: Schedule check-in call"
+      : "Usage dipped below the expected benchmark → Suggested: Review adoption plan";
+    const activationCopy = profile.score < 70
+      ? "3 licenses never activated → Suggested: Trigger onboarding nudge"
+      : "New team seats assigned but not fully activated yet → Suggested: Trigger onboarding nudge";
+    const positiveCopy = profile.score >= 70
+      ? "Admin logged in twice this week — engagement trending up"
+      : "Admin responded to the last outreach — engagement may be improving";
+    return `
+      <div class="alert-feed">
+        <div class="alert-card red">
+          <div>
+            <strong>High-priority signal</strong>
+            <p>${riskCopy}</p>
+          </div>
+          <button class="action-chip" type="button">Add to Workflow</button>
+        </div>
+        <div class="alert-card amber">
+          <div>
+            <strong>Activation gap</strong>
+            <p>${activationCopy}</p>
+          </div>
+          <button class="action-chip" type="button">Dismiss</button>
+        </div>
+        <div class="alert-card green">
+          <div>
+            <strong>Positive signal</strong>
+            <p>${positiveCopy}</p>
+          </div>
+          <button class="action-chip" type="button">Log Note</button>
+        </div>
+      </div>
+    `;
   }
 
   const modalBackdrop = document.getElementById("detail-modal-backdrop");
@@ -2041,6 +2751,13 @@
     const profile = accountProfiles[accountId];
     if (!profile) return;
     const tone = scoreTone(profile.score);
+    const renewalInDays = daysUntilRenewal(profile.renewalDate);
+    const automationStates = [
+      { trigger: "Score drops below 40", action: "Auto-enroll in re-engagement sequence", enabled: profile.score < 40 },
+      { trigger: "No logins in 14 days", action: "Queue follow-up email + flag for CSM review", enabled: profile.score < 55 },
+      { trigger: "Score drops below 30", action: "Escalate to CS lead + Slack alert", enabled: profile.score < 30 },
+      { trigger: "Renewal within 60 days + score healthy", action: "Trigger expansion playbook", enabled: profile.score >= 70 && renewalInDays <= 60 }
+    ];
     modal.innerHTML = `
       <div class="modal-header">
         <div>
@@ -2055,18 +2772,67 @@
       </div>
       <div class="modal-grid">
         <div class="detail-card">
-          <div class="detail-title">Score Breakdown</div>
-          <div class="breakdown-list">
+          <div class="detail-title">Account Overview</div>
+          <div class="overview-grid">
+            <div class="overview-stat">
+              <div class="overview-stat-label">Account</div>
+              <div class="overview-stat-value">${profile.name}</div>
+            </div>
+            <div class="overview-stat">
+              <div class="overview-stat-label">Assigned Rep</div>
+              <div class="overview-stat-value">${profile.rep}</div>
+            </div>
+            <div class="overview-stat">
+              <div class="overview-stat-label">Renewal Date</div>
+              <div class="overview-stat-value">${profile.renewalDate}</div>
+            </div>
+            <div class="overview-stat">
+              <div class="overview-stat-label">Status</div>
+              <div class="overview-stat-value">${profile.status}</div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-title">Signal Breakdown</div>
+          <div class="signal-grid">
             ${profile.breakdown.map((value, index) => `
-              <div class="breakdown-row">
-                <div class="breakdown-label">${baseSignals[index]}</div>
-                <div class="breakdown-track">
-                  <div class="breakdown-fill" style="width:${Math.max(value, 4) * 4}%; background:${value >= 12 ? "#22c55e" : value >= 7 ? "#f59e0b" : "#ef4444"}"></div>
+              <div class="signal-scorecard">
+                <div class="signal-scorecard-head">
+                  <div class="signal-name">${baseSignals[index]}</div>
+                  <span class="signal-pill ${signalState(value, signalMax[index])}"><span class="signal-dot"></span>${value}/${signalMax[index]}</span>
                 </div>
-                <div class="breakdown-value">${value}</div>
+                <div class="signal-line">
+                  <div class="signal-line-fill" style="width:${(value / signalMax[index]) * 100}%; background:${signalColor(value, signalMax[index])}"></div>
+                </div>
+                <div class="signal-meta">
+                  <span>Weight ${signalMax[index]}%</span>
+                  <span>${value >= signalMax[index] * 0.7 ? "Healthy" : value >= signalMax[index] * 0.4 ? "Watch" : "At Risk"}</span>
+                </div>
               </div>
             `).join("")}
           </div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-title">Automation & Workflows</div>
+          <div class="switch-list">
+            ${automationStates.map((row, index) => `
+              <div class="workflow-row">
+                <strong>${row.trigger}</strong>
+                <span>${row.action}</span>
+                <label class="switch">
+                  <input class="toggle-input" type="checkbox" ${row.enabled ? "checked" : ""} aria-label="Toggle workflow ${index + 1}">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            `).join("")}
+          </div>
+          <div class="modal-actions">
+            ${workflowMenuMarkup()}
+          </div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-title">Proactive Alerts Feed</div>
+          ${renderAlertFeed(profile)}
         </div>
         <div class="detail-card">
           <div class="detail-title">Recent Activity Timeline</div>
@@ -2096,6 +2862,15 @@
             </div>
           </div>
           <div class="muted-note">${profile.expansionNote}</div>
+        </div>
+        <div class="detail-card next-action-card">
+          <div class="detail-title">Next Best Action</div>
+          <strong>AI Recommendation</strong>
+          <p>This account hasn't completed Module 3. Based on similar accounts, a 15-minute check-in at this stage increases completion by 60%.</p>
+          <div class="action-btn-row">
+            <button class="action-btn" type="button">Schedule Call</button>
+            <button class="action-btn" type="button">Dismiss</button>
+          </div>
         </div>
         <div class="detail-card">
           <div class="detail-title">Recommended Actions</div>
@@ -2252,6 +3027,27 @@
     document.getElementById("empty-state").classList.toggle("visible", hiddenCount === totalCount);
   }
 
+  function rowHealthState(row) {
+    if (row.classList.contains("tier-healthy")) return "healthy";
+    if (row.classList.contains("tier-watch")) return "watch";
+    return "risk";
+  }
+
+  function applyHealthFilter(filter) {
+    document.querySelectorAll(".summary-card[data-health-filter]").forEach(card => {
+      card.classList.toggle("active", card.dataset.healthFilter === filter);
+    });
+
+    document.querySelectorAll(".account-row").forEach(row => {
+      row.classList.toggle("hidden-row", filter !== "all" && rowHealthState(row) !== filter);
+    });
+
+    document.querySelectorAll(".rep-section").forEach(section => {
+      const hasVisible = [...section.querySelectorAll(".account-row")].some(row => !row.classList.contains("hidden-row"));
+      section.classList.toggle("hidden-row", !hasVisible);
+    });
+  }
+
   document.querySelectorAll(".filter-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".filter-btn").forEach(item => item.classList.remove("active"));
@@ -2265,12 +3061,72 @@
     });
   });
 
-  document.querySelectorAll("[data-account-id]").forEach(trigger => {
+  document.querySelectorAll(".summary-card[data-health-filter]").forEach(card => {
+    card.addEventListener("click", () => applyHealthFilter(card.dataset.healthFilter));
+  });
+
+  document.querySelectorAll(".explore-link").forEach(trigger => {
     trigger.addEventListener("click", () => openAccountModal(trigger.dataset.accountId));
+  });
+
+  document.querySelectorAll(".attention-item").forEach(item => {
+    item.addEventListener("click", event => {
+      if (event.target.closest(".workflow-wrap") || event.target.closest(".ghost-btn")) return;
+      openAccountModal(item.dataset.accountId);
+    });
+    item.addEventListener("keydown", event => {
+      if ((event.key === "Enter" || event.key === " ") && !event.target.closest(".workflow-wrap")) {
+        event.preventDefault();
+        openAccountModal(item.dataset.accountId);
+      }
+    });
+  });
+
+  document.querySelectorAll(".ghost-btn").forEach(trigger => {
+    trigger.addEventListener("click", event => {
+      event.stopPropagation();
+      openAccountModal(trigger.dataset.accountId);
+    });
+  });
+
+  document.addEventListener("click", event => {
+    const trigger = event.target.closest(".workflow-trigger");
+    if (trigger) {
+      event.stopPropagation();
+      const wrap = trigger.closest(".workflow-wrap");
+      document.querySelectorAll(".workflow-wrap.open").forEach(menu => {
+        if (menu !== wrap) menu.classList.remove("open");
+      });
+      wrap.classList.toggle("open");
+      return;
+    }
+
+    if (event.target.closest(".workflow-option")) {
+      event.target.closest(".workflow-wrap")?.classList.remove("open");
+      return;
+    }
+
+    document.querySelectorAll(".workflow-wrap.open").forEach(menu => menu.classList.remove("open"));
+  });
+
+  document.querySelectorAll(".signal-toggle").forEach(toggle => {
+    toggle.addEventListener("click", () => {
+      toggle.closest(".signal-toggle-card").classList.toggle("open");
+    });
+  });
+
+  document.querySelectorAll(".sprint-node").forEach(node => {
+    node.addEventListener("click", () => {
+      document.querySelectorAll(".sprint-node").forEach(item => item.classList.toggle("active", item === node));
+      document.querySelectorAll(".sprint-detail-panel").forEach(panel => {
+        panel.classList.toggle("active", panel.dataset.sprintPanel === node.dataset.sprint);
+      });
+    });
   });
 
   updateCounts();
   updateEmptyState();
+  applyHealthFilter("all");
 </script>
 </body>
 </html>
