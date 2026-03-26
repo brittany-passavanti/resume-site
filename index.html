@@ -29,7 +29,12 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            padding: 10vh 24px 18vh;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 175vh;
+            padding: 34vh 24px 48vh;
             position: relative;
         }
 
@@ -109,15 +114,17 @@
     </style>
 </head>
 <body>
-    <main class="card">
-        <div class="photo-wrap">
-            <img class="profile-photo" src="assets/profile.jpg" alt="Portrait of Brittany Passavanti">
-        </div>
-        <section>
-            <div class="eyebrow">Hello</div>
-            <h1>I'm Brittany.</h1>
-        </section>
-    </main>
-    <div class="scene-note">Glencoe, Scotland</div>
+    <div class="hero">
+        <main class="card">
+            <div class="photo-wrap">
+                <img class="profile-photo" src="assets/profile.jpg" alt="Portrait of Brittany Passavanti">
+            </div>
+            <section>
+                <div class="eyebrow">Hello</div>
+                <h1>I'm Brittany.</h1>
+            </section>
+        </main>
+        <div class="scene-note">Glencoe, Scotland</div>
+    </div>
 </body>
 </html>
