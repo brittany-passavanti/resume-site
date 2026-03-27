@@ -73,6 +73,48 @@
     color: var(--navy);
   }
 
+  .toc {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 40px;
+    padding: 20px 22px;
+    border-radius: 20px;
+    border: 1px solid rgba(13, 27, 42, 0.08);
+    background: rgba(248, 242, 234, 0.9);
+    box-shadow: 0 12px 28px rgba(81, 59, 42, 0.07);
+  }
+
+  .toc-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .toc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .toc-links a {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .toc-links a:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
   /* SECTION */
   .section {
     padding: 28px 30px 32px;
@@ -334,6 +376,11 @@
       margin-bottom: 28px;
     }
 
+    .toc {
+      padding: 18px;
+      margin-bottom: 28px;
+    }
+
     .header-meta {
       flex-direction: column;
       gap: 10px;
@@ -358,8 +405,25 @@
   </div>
 </div>
 
+<div class="toc">
+  <div class="toc-label">Table of Contents</div>
+  <div class="toc-links">
+    <a href="#about-you">Tell Me About You</a>
+    <a href="#who-is-paul">Who You're Talking To</a>
+    <a href="#show-up">How to Show Up</a>
+    <a href="#why-smarterx">Why SmarterX</a>
+    <a href="#strategy">Working Strategy</a>
+    <a href="#vocabulary">Speak Their Language</a>
+    <a href="#ai-resistance">AI Resistance</a>
+    <a href="#questions">Questions</a>
+    <a href="#how-i-made-this">How I Made This</a>
+    <a href="#close">How to Close</a>
+    <a href="#background">Background Notes</a>
+  </div>
+</div>
+
 <!-- SECTION: YOUR BACKGROUND QUICK REFERENCE -->
-<div class="section">
+<div class="section" id="about-you">
   <div class="section-label">Opening</div>
   <h2>Tell Me About You</h2>
 
@@ -375,7 +439,7 @@
 
 
 <!-- SECTION 1: WHO IS PAUL -->
-<div class="section">
+<div class="section" id="who-is-paul">
   <div class="section-label">Section 01</div>
   <h2>Who You're Talking To</h2>
 
@@ -412,7 +476,7 @@
 
 
 <!-- SECTION 2: HOW TO SHOW UP -->
-<div class="section">
+<div class="section" id="show-up">
   <div class="section-label">Section 02</div>
   <h2>How to Show Up in This Conversation</h2>
 
@@ -424,10 +488,22 @@
   </ul>
 </div>
 
+<div class="section" id="why-smarterx">
+  <div class="section-label">Section 03</div>
+  <h2>Why SmarterX</h2>
+
+  <ul class="prep-list">
+    <li>My husband is a dev manager, and being close to that world got me really interested in what this AI shift is going to change.</li>
+    <li>I live in an area where things feel much sleepier, and I feel that lack of adoption all the time, which has only made me more energized by this space.</li>
+    <li>I heard the Customer Success episode and thought this could be a really strong next transition role for me.</li>
+    <li>I was genuinely thrilled to hear from Elizabeth.</li>
+  </ul>
+</div>
+
 
 <!-- SECTION 5: THINKING & WORKING STRATEGY -->
-<div class="section">
-  <div class="section-label">Section 03</div>
+<div class="section" id="strategy">
+  <div class="section-label">Section 04</div>
   <h2>Your Thinking & Working Strategy</h2>
 
   <ul class="prep-list">
@@ -435,14 +511,15 @@
     <li><strong>You watch signals, not just conversations.</strong> You don't wait for clients to tell you something is wrong. You track usage, engagement, and adoption patterns — and you intervene early.</li>
     <li><strong>You automate what should be automated.</strong> Your attention is a finite resource. You design workflows so that the human judgment goes where it actually matters.</li>
     <li><strong>You think in outcomes, not activities.</strong> Every check-in, every onboarding call, every escalation is in service of a measurable result — retention, expansion, time-to-value.</li>
+    <li><strong>This is a revenue-related role.</strong> Retention, expansion, renewal health, and long-term account growth all matter, and I want to show that I understand CS here has real business impact.</li>
     <li><strong>You use AI the way Paul would want you to.</strong> Claude is in your daily workflow. You built the application site. You're not talking about AI — you're living it.</li>
   </ul>
 </div>
 
 
 <!-- SECTION 7: SMARTERX VOCABULARY -->
-<div class="section">
-  <div class="section-label">Section 04</div>
+<div class="section" id="vocabulary">
+  <div class="section-label">Section 05</div>
   <h2>SmarterX Vocabulary — Speak Their Language</h2>
 
   <table class="compact-table">
@@ -485,8 +562,8 @@
 </div>
 
 <!-- SECTION: HANDLING AI RESISTANCE -->
-<div class="section">
-  <div class="section-label">Section 05</div>
+<div class="section" id="ai-resistance">
+  <div class="section-label">Section 06</div>
   <h2>When Users Push Back on AI</h2>
 
   <div class="highlight-strip">
@@ -535,8 +612,8 @@
 
 
 <!-- SECTION 8: QUESTIONS TO ASK PAUL -->
-<div class="section">
-  <div class="section-label">Section 06</div>
+<div class="section" id="questions">
+  <div class="section-label">Section 07</div>
   <h2>Questions to Ask Paul</h2>
 
   <div class="card-grid">
@@ -565,10 +642,24 @@
   </div>
 </div>
 
+<div class="section" id="how-i-made-this">
+  <div class="section-label">Section 08</div>
+  <h2>How I Made This</h2>
+
+  <ul class="prep-list">
+    <li>Started with the podcast transcript.</li>
+    <li>Screen-recorded it and ran it through Gemini.</li>
+    <li>Used that to help think through a dashboard that visualized what Paul was talking about, then gave feedback on what I wanted to see.</li>
+    <li>Iterated a few times, matched the branding, and adjusted it based on what I heard his priorities were.</li>
+    <li>For this meeting, used the CS Blueprint webinar/deck to push it further into a simple visualization.</li>
+    <li>This was never meant to be the literal end product, just a lightweight visualization of how I think about the system in my head.</li>
+  </ul>
+</div>
+
 
 <!-- SECTION 9: THE CLOSE -->
-<div class="section">
-  <div class="section-label">Section 07</div>
+<div class="section" id="close">
+  <div class="section-label">Section 09</div>
   <h2>How to Close</h2>
 
   <div class="callout red">
@@ -589,7 +680,7 @@
 </div>
 
 <!-- SECTION: YOUR BACKGROUND QUICK REFERENCE -->
-<div class="section">
+<div class="section" id="background">
   <div class="section-label">Backup Reference</div>
   <h2>Your Background — Key Points to Hit</h2>
 
