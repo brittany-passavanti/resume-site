@@ -9,12 +9,14 @@
   :root {
     color-scheme: light;
     --navy: #0d1b2a;
-    --cream: #f7f4ef;
+    --cream: #d9c9b7;
+    --paper: #f4ece3;
+    --paper-soft: #ece0d3;
     --gold: #c9973a;
     --green: #2d6a4f;
     --red: #b03a2e;
     --muted: #6b6b6b;
-    --border: #d8d2c8;
+    --border: #d3cbc0;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,11 +27,11 @@
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: #f7f4ef !important;
+    width: 100%;
+    background: var(--cream) !important;
     color: #0d1b2a !important;
-    padding: 60px 40px 100px;
-    max-width: 960px;
-    margin: 0 auto;
+    padding: 56px 56px 100px;
+    margin: 0;
     font-size: 18px;
     line-height: 1.6;
     -webkit-text-size-adjust: 100%;
@@ -73,7 +75,16 @@
 
   /* SECTION */
   .section {
+    padding: 28px 30px 32px;
+    border: 1px solid rgba(13, 27, 42, 0.08);
+    border-radius: 24px;
+    background: rgba(244, 236, 227, 0.84);
+    box-shadow: 0 14px 36px rgba(81, 59, 42, 0.08);
     margin-bottom: 64px;
+  }
+
+  .section:nth-of-type(odd) {
+    background: rgba(248, 242, 234, 0.92);
   }
 
   .section-label {
@@ -90,7 +101,7 @@
     font-size: 2em;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     border-bottom: 2px solid var(--border);
     padding-bottom: 14px;
   }
@@ -100,15 +111,15 @@
     padding: 20px 24px;
     margin-bottom: 20px;
     border-left: 5px solid var(--navy);
-    background: white;
+    background: var(--paper);
     font-size: 1.05em;
     line-height: 1.7;
   }
 
-  .callout.gold { border-left-color: var(--gold); background: #fdf8f0; }
-  .callout.green { border-left-color: var(--green); background: #f0f7f3; }
-  .callout.red { border-left-color: var(--red); background: #fdf1f0; }
-  .callout.navy { border-left-color: var(--navy); background: #f0f2f5; }
+  .callout.gold { border-left-color: var(--gold); background: #f7f0e4; }
+  .callout.green { border-left-color: var(--green); background: #ecf4ef; }
+  .callout.red { border-left-color: var(--red); background: #f8ebe8; }
+  .callout.navy { border-left-color: var(--navy); background: #e9edf2; }
 
   .callout .callout-label {
     font-size: 10px;
@@ -132,7 +143,7 @@
   }
 
   .card {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--border);
     border-top: 4px solid var(--navy);
     padding: 20px 22px;
@@ -159,7 +170,7 @@
     font-size: 1.25em;
     line-height: 1.75;
     color: var(--navy);
-    background: white;
+    background: var(--paper);
     padding: 28px 32px;
     border: 1px solid var(--border);
     margin-bottom: 16px;
@@ -176,6 +187,10 @@
     list-style: none;
     padding: 0;
     margin-bottom: 16px;
+  }
+
+  .callout .prep-list {
+    margin-bottom: 0;
   }
 
   .prep-list li {
@@ -201,7 +216,11 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95em;
-    background: white;
+    background: var(--paper);
+  }
+
+  .compact-table {
+    font-size: 0.84em;
   }
 
   th {
@@ -214,6 +233,11 @@
     font-size: 0.88em;
   }
 
+  .compact-table th {
+    padding: 10px 12px;
+    font-size: 0.8em;
+  }
+
   td {
     padding: 12px 16px;
     border-bottom: 1px solid var(--border);
@@ -221,7 +245,12 @@
     line-height: 1.55;
   }
 
-  tr:nth-child(even) td { background: #fafaf8; }
+  .compact-table td {
+    padding: 10px 12px;
+    line-height: 1.45;
+  }
+
+  tr:nth-child(even) td { background: var(--paper-soft); }
 
   /* HIGHLIGHT STRIP */
   .highlight-strip {
@@ -255,25 +284,27 @@
 
 
   @media (prefers-color-scheme: dark) {
-    html, body { background: #f7f4ef !important; color: #0d1b2a !important; }
-    .callout { background: #ffffff !important; color: #0d1b2a !important; }
-    .callout.gold { background: #fdf8f0 !important; }
-    .callout.green { background: #f0f7f3 !important; }
-    .callout.red { background: #fdf1f0 !important; }
-    .callout.navy { background: #f0f2f5 !important; }
+    html, body { background: var(--cream) !important; color: #0d1b2a !important; }
+    .section { background: rgba(244, 236, 227, 0.84) !important; }
+    .section:nth-of-type(odd) { background: rgba(248, 242, 234, 0.92) !important; }
+    .callout { background: var(--paper) !important; color: #0d1b2a !important; }
+    .callout.gold { background: #f7f0e4 !important; }
+    .callout.green { background: #ecf4ef !important; }
+    .callout.red { background: #f8ebe8 !important; }
+    .callout.navy { background: #e9edf2 !important; }
     .callout-label { color: inherit !important; }
     .callout.gold .callout-label { color: #c9973a !important; }
     .callout.green .callout-label { color: #2d6a4f !important; }
     .callout.red .callout-label { color: #b03a2e !important; }
-    .big-answer { background: #ffffff !important; color: #0d1b2a !important; }
-    .card { background: #ffffff !important; }
+    .big-answer { background: var(--paper) !important; color: #0d1b2a !important; }
+    .card { background: var(--paper) !important; }
     .card h3 { color: #0d1b2a !important; }
     .card p, .card li { color: #333333 !important; }
     .highlight-strip { background: #0d1b2a !important; color: #ffffff !important; }
     .highlight-strip strong { color: #c9973a !important; }
-    table { background: #ffffff !important; }
-    td { color: #0d1b2a !important; background: #ffffff !important; }
-    tr:nth-child(even) td { background: #fafaf8 !important; }
+    table { background: var(--paper) !important; }
+    td { color: #0d1b2a !important; background: var(--paper) !important; }
+    tr:nth-child(even) td { background: var(--paper-soft) !important; }
     th { background: #0d1b2a !important; color: #ffffff !important; }
     .prep-list li { color: #0d1b2a !important; }
     .header h1 { color: #0d1b2a !important; }
@@ -292,6 +323,26 @@
     .section h2 { font-size: 1.6em; }
     .big-answer { font-size: 1.05em; }
   }
+
+  @media (max-width: 900px) {
+    body {
+      padding: 36px 24px 72px;
+    }
+
+    .section {
+      padding: 22px 20px 24px;
+      margin-bottom: 28px;
+    }
+
+    .header-meta {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
 <body>
@@ -304,6 +355,21 @@
     <span><strong>Who:</strong> Paul Roetzer, Founder & CEO — SmarterX / AI Academy</span>
     <span><strong>When:</strong> Friday, March 27 · 9:00 AM EST</span>
     <span><strong>You:</strong> Brittany Passavanti</span>
+  </div>
+</div>
+
+<!-- SECTION: YOUR BACKGROUND QUICK REFERENCE -->
+<div class="section">
+  <div class="section-label">Opening</div>
+  <h2>Tell Me About You</h2>
+
+  <div class="callout gold">
+    <div class="callout-label">Key Points</div>
+    <ul class="prep-list">
+      <li>I've had a non-linear career, and I think that's one of my strengths.</li>
+      <li>I'm a passionate person with a lot of interests, and that's led me on a really interesting path.</li>
+      <li>I like to pull on threads.</li>
+    </ul>
   </div>
 </div>
 
@@ -359,85 +425,9 @@
 </div>
 
 
-<!-- SECTION 3: THE SITE -->
-<div class="section">
-  <div class="section-label">Section 03</div>
-  <h2>What Paul Is Looking At — Your brittanypassavanti.com/paul Page</h2>
-
-  <div class="callout green">
-    <div class="callout-label">This Is Your Biggest Differentiator</div>
-    You built a custom page specifically for this interview. A 90-day plan. A live account health dashboard. A HubSpot implementation roadmap. That's not something candidates do. He's going to see it before the call — it signals that you think in systems, you show your work, and you don't wait to be told what to do.
-  </div>
-
-  <div class="card-grid">
-    <div class="card">
-      <h3>90-Day Plan Highlights</h3>
-      <ul>
-        <li>Phase 1: Listen & Map — audit, interviews, baseline</li>
-        <li>Phase 2: Build & Systematize — journey map, onboarding playbook, health score framework</li>
-        <li>Phase 3: Activate & Prove — launch health score, early warning triggers, QBR framework</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>HubSpot Build — 4 Sprints</h3>
-      <ul>
-        <li>Sprint 1: Custom properties & scoring logic</li>
-        <li>Sprint 2: Data pipelines (WAU, first logins, course completions)</li>
-        <li>Sprint 3: Scoring, segmentation, dashboards</li>
-        <li>Sprint 4: Automation, alerts, expansion playbook triggers</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="callout navy">
-    <div class="callout-label">If He Asks About It</div>
-    Walk him through the logic of the health score — WAU, first logins, course completions, certificate rate, admin engagement, support sentiment, exec sponsor status. Explain that you used the AI for Customer Success Blueprint as the foundation and mapped it into HubSpot's actual toolset. Show that you didn't just read it — you operationalized it.
-  </div>
-</div>
-
-
-<!-- SECTION 4: YOUR STORY -->
-<div class="section">
-  <div class="section-label">Section 04</div>
-  <h2>Your Story — What to Lead With</h2>
-
-  <div class="big-answer">
-    "The thread through everything I've done is helping people adopt new technology — especially when that technology represents a real change in how they work. I've seen that pattern play out at Gingr, where I was helping small business owners learn software that was fundamentally changing how they ran their operations. I saw it at Indeed, where enterprise HR teams had to trust a new way of thinking about hiring. The resistance is the same. The adoption curve is the same. That's what your clients are going through with AI — and I think that's genuinely what I'm built for."
-  </div>
-
-  <hr class="divider">
-
-  <div class="card-grid">
-    <div class="card">
-      <h3>Gingr — Lead Story</h3>
-      <ul>
-        <li>Built replicable SMB onboarding workflows</li>
-        <li>Managed product expansion into Australia and London — developed new SOPs for new markets</li>
-        <li>Monitored adoption signals proactively — didn't wait for clients to surface issues</li>
-        <li>Scaled a large book without losing individual account quality</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Indeed — Secondary Story</h3>
-      <ul>
-        <li>Enterprise clients, dashboard-driven conversations</li>
-        <li>Shared data view as the basis for every account conversation</li>
-        <li>Guided large organizations through adoption of a new hiring methodology</li>
-        <li>Executive-level reporting and retention management</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="callout gold">
-    <div class="callout-label">The Bridge — Use This</div>
-    "The product is different. The human experience is the same. And I think that's genuinely useful when your clients are trying to get entire organizations to adopt AI."
-  </div>
-</div>
-
-
 <!-- SECTION 5: THINKING & WORKING STRATEGY -->
 <div class="section">
-  <div class="section-label">Section 05</div>
+  <div class="section-label">Section 03</div>
   <h2>Your Thinking & Working Strategy</h2>
 
   <ul class="prep-list">
@@ -450,66 +440,12 @@
 </div>
 
 
-<!-- SECTION 6: CS SCORE & PRODUCT KNOWLEDGE -->
-<div class="section">
-  <div class="section-label">Section 06</div>
-  <h2>The Customer Success Score — Know This Cold</h2>
-
-  <div class="highlight-strip">
-    Paul built V1 of the Customer Success Score <strong>at 5:30am in a hotel room</strong> using AI, and presented it to his team the next day. It's being operationalized now in HubSpot. If you reference this — naturally, not as a trivia fact — he'll feel genuinely seen.
-  </div>
-
-  <table>
-    <tr>
-      <th>Signal</th>
-      <th>Weight</th>
-      <th>What It Means</th>
-    </tr>
-    <tr>
-      <td><strong>Weekly Active Users</strong></td>
-      <td>25%</td>
-      <td>Is the product actually being used week-over-week?</td>
-    </tr>
-    <tr>
-      <td><strong>First Logins</strong></td>
-      <td>15%</td>
-      <td>Are new licenses actually getting activated?</td>
-    </tr>
-    <tr>
-      <td><strong>Course Completions</strong></td>
-      <td>20%</td>
-      <td>Are learners progressing through the curriculum?</td>
-    </tr>
-    <tr>
-      <td><strong>Certificate Rate</strong></td>
-      <td>15%</td>
-      <td>Are users completing formal AI literacy milestones?</td>
-    </tr>
-    <tr>
-      <td><strong>Admin Engagement</strong></td>
-      <td>10%</td>
-      <td>Is the internal champion still present and responsive?</td>
-    </tr>
-    <tr>
-      <td><strong>Support Sentiment</strong></td>
-      <td>10%</td>
-      <td>Are open tickets resolved positively?</td>
-    </tr>
-    <tr>
-      <td><strong>Exec Sponsor Status</strong></td>
-      <td>5%</td>
-      <td>Is there still organizational buy-in at the top?</td>
-    </tr>
-  </table>
-</div>
-
-
 <!-- SECTION 7: SMARTERX VOCABULARY -->
 <div class="section">
-  <div class="section-label">Section 07</div>
+  <div class="section-label">Section 04</div>
   <h2>SmarterX Vocabulary — Speak Their Language</h2>
 
-  <table>
+  <table class="compact-table">
     <tr>
       <th>Term</th>
       <th>What It Means</th>
@@ -548,34 +484,153 @@
   </table>
 </div>
 
+<!-- SECTION: HANDLING AI RESISTANCE -->
+<div class="section">
+  <div class="section-label">Section 05</div>
+  <h2>When Users Push Back on AI</h2>
+
+  <div class="highlight-strip">
+    Resistance isn't a problem to solve — it's a <strong>human response to uncertainty</strong>. The job isn't to convince skeptics. It's to find the people who are already curious and <strong>teach them how to bring others along.</strong>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>What Resistance Usually Is</h3>
+      <ul>
+        <li>Fear of being replaced or exposed as not tech-savvy</li>
+        <li>No clear answer to "what's in it for me personally"</li>
+        <li>A bad first experience that never got addressed</li>
+        <li>No internal champion making it feel safe to try</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>What It's Almost Never</h3>
+      <ul>
+        <li>A fundamental objection to AI itself</li>
+        <li>Something that needs more product features to fix</li>
+        <li>A CSM problem to solve alone</li>
+        <li>Permanent — resistance moves when the right person models the behavior</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <div class="callout-label">The Approach — Find the Champion, Teach Them to Lead</div>
+    Every account has someone who's already curious. My job is to find that person early, invest in them specifically, and equip them to have the conversations I can't have at scale. I'm not the one who changes minds inside an organization — the right internal voice is. I just give them the language, the confidence, and the wins to point to.
+  </div>
+
+  <ul class="prep-list">
+    <li><strong>Identify the champion in the first 30 days.</strong> It's rarely the admin. Look for the person who's already experimenting — they show up in the usage data before they raise their hand.</li>
+    <li><strong>Give them a quick win they can share.</strong> One specific example of AI saving them real time. Something concrete enough that they can walk into a team meeting and say "look what I did." That story travels without me.</li>
+    <li><strong>Teach them how to handle the skeptics</strong> — not by debating AI, but by modeling comfort with it. Skeptics don't move on argument. They move when someone they trust stops being afraid.</li>
+    <li><strong>Normalize the learning curve out loud.</strong> The best thing a champion can say to a resister is "I didn't get it at first either." That permission matters more than any feature demo.</li>
+    <li><strong>Track it in the health score.</strong> User maturity distribution — how many people are moving from passive to active — is the leading indicator that champion activation is working.</li>
+  </ul>
+
+  <div class="callout gold">
+    <div class="callout-label">If Paul Asks How You Scale This Across a Large Book</div>
+    "I can't be in every conversation — and I shouldn't be. My job is to build the conditions where adoption spreads internally. That means investing deeply in the right person early, giving them tools to lead, and using the health score to tell me which accounts need that intervention and which ones are already moving on their own."
+  </div>
+</div>
+
 
 <!-- SECTION 8: QUESTIONS TO ASK PAUL -->
 <div class="section">
-  <div class="section-label">Section 08</div>
+  <div class="section-label">Section 06</div>
   <h2>Questions to Ask Paul</h2>
 
-  <ul class="prep-list">
-    <li>AI Academy is clearly in a growth phase — how does leadership think about where it sits in the broader AI education landscape in 2–3 years? Is the goal to be the dominant brand for professional AI literacy, or is the vision something bigger?</li>
-    <li>As AI adoption accelerates, demand for what you're building seems like it should be exploding. What's the biggest constraint on growth right now — awareness, sales capacity, product, or something else?</li>
-    <li>When you think about the CS team you're building — what does the right profile look like? Is it more about technical fluency, or organizational change management?</li>
-    <li>How important is genuine belief in the mission to success in this role? There's a real difference between someone who can talk about AI literacy and someone who actually lives it.</li>
-  </ul>
+  <div class="card-grid">
+    <div class="card">
+      <h3>On Customers</h3>
+      <ul>
+        <li>"What's the hardest type of account to serve right now — not from a technical standpoint, but from a human one?"</li>
+        <li>"Have you seen a customer completely surprise you with how they adopted the product? Like it worked in a way you didn't expect?"</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>On the Team</h3>
+      <ul>
+        <li>"What's something you wish you'd built into the CS function earlier that you're course-correcting now?"</li>
+        <li>"When you picture this role working really well a year from now — what does that actually look like day to day?"</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>On Where Things Are Going</h3>
+      <ul>
+        <li>"As the product evolves, do you see the CS role staying relationship-heavy or shifting toward something more technical or consultative?"</li>
+        <li>"Is there a version of this where CS becomes a real revenue driver for SmarterX — not just retention but actual growth?"</li>
+        <li>"If this works as big as you think it can, what does SmarterX become in a few years?"</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 
 <!-- SECTION 9: THE CLOSE -->
 <div class="section">
-  <div class="section-label">Section 09</div>
+  <div class="section-label">Section 07</div>
   <h2>How to Close</h2>
 
   <div class="callout red">
     <div class="callout-label">Say This Out Loud — Don't Dance Around It</div>
-    "I want to be direct: I want this role. I've been following the work you're doing for over a year. I built a custom application page for this specific conversation because I wanted to show — not just tell — how I think. The mission matters to me. I think I can make a real contribution here."
+    <ul class="prep-list">
+      <li>I want this role.</li>
+      <li>I've been following your work for about a year.</li>
+      <li>I built a custom page to show how I think.</li>
+      <li>The mission matters to me.</li>
+      <li>I can contribute meaningfully.</li>
+    </ul>
   </div>
 
   <div class="callout gold">
     <div class="callout-label">What You're Bringing That Others Aren't</div>
     You applied proactively. You built a chatbot for your application. You built a 90-day plan and a live account health dashboard. You already knew the Customer Success Score before you ever spoke to anyone at SmarterX. Founders notice that. That's not a normal candidate.
+  </div>
+</div>
+
+<!-- SECTION: YOUR BACKGROUND QUICK REFERENCE -->
+<div class="section">
+  <div class="section-label">Backup Reference</div>
+  <h2>Your Background — Key Points to Hit</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Gingr App — CSM</h3>
+      <ul>
+        <li>Built replicable SMB onboarding workflows from scratch</li>
+        <li>Led product expansion into Australia & London — built new market SOPs</li>
+        <li>Handled customers who were resistant to transition, using a human element in the conversation where it was needed</li>
+        <li>Monitored adoption signals proactively, intervened before churn surfaced</li>
+        <li>Managed large book of business at scale without losing account quality</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Indeed — Account Management</h3>
+      <ul>
+        <li>Enterprise clients, dashboard-driven conversations</li>
+        <li>Guided large orgs through adopting a new hiring methodology</li>
+        <li>Executive-level reporting and retention management</li>
+        <li>Shared data as foundation for every client conversation</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Avant Creative — Managing Director</h3>
+      <ul>
+        <li>Ran a multi-client creative agency end-to-end</li>
+        <li>Got non-technical clients up and running on new tools fast</li>
+        <li>Managed timelines, budgets, and deliverables across simultaneous projects</li>
+        <li>Implemented tech into consumer engagement strategies</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>The Bigger Story</h3>
+      <ul>
+        <li>MS in Conservation Biology — systems thinker by training</li>
+        <li>Ran a dog walking & pet care company — operations, scheduling, scale</li>
+        <li>Education work on the side — teaching has always been part of the picture</li>
+        <li>Non-linear path with one consistent thread: helping people navigate something new</li>
+      </ul>
+    </div>
   </div>
 </div>
 
